@@ -11,7 +11,8 @@
     global_python: 3.4.3
   pre_tasks:
     - name: update apt cache
-      apt: update_cache=yes
+      apt:
+        update_cache: yes
   roles:
     - base
     - ruby

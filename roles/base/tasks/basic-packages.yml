@@ -1,6 +1,8 @@
 ---
 - name: install basic packages
-  apt: name={{ item }} state=present
+  apt:
+    name: {{ item }}
+    state: present
   with_items:
     - python-software-properties
     - build-essential

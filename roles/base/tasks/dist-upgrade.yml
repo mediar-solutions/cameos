@@ -1,3 +1,4 @@
 ---
 - name: dist-upgrade
-  apt: upgrade=dist
+  apt:
+    upgrade: dist
