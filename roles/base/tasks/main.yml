@@ -1,0 +1,7 @@
+---
+- include: dist-upgrade.yml
+- include: bash-history.yml
+- include: basic-packages.yml
+- include: unattended-upgrades.yml
+- include: vim-default.yml
+- include: ssh.yml

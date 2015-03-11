@@ -1,0 +1,8 @@
+---
+- include: required-packages.yml
+- include: pyenv.yml
+  sudo: yes
+  sudo_user: "{{ deploy_user }}"
+- include: python.yml
+  sudo: yes
+  sudo_user: "{{ deploy_user }}"

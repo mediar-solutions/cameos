@@ -1,0 +1,9 @@
+---
+- include: required-packages.yml
+- include: rbenv.yml
+  sudo: yes
+  sudo_user: "{{ deploy_user }}"
+- include: ruby.yml
+  sudo: yes
+  sudo_user: "{{ deploy_user }}"
+

@@ -1,0 +1,16 @@
+---
+- name: install required ruby packages
+  apt: name={{ item }} state=present
+  with_items:
+    - zlib1g-dev
+    - libssl-dev
+    - libreadline-dev
+    - libyaml-dev
+    - libsqlite3-dev
+    - sqlite3
+    - libxml2-dev
+    - libxslt1-dev
+    - libcurl4-openssl-dev
+    - imagemagick
+    - libmagickwand-dev
+    - libffi-dev

@@ -1,0 +1,18 @@
+---
+- hosts: all
+  sudo: true
+  vars:
+    deploy_user: vagrant
+    rubies:
+      - 2.2.1
+    global_ruby: 2.2.1
+    pythons:
+      - 3.4.3
+    global_python: 3.4.3
+  pre_tasks:
+    - name: update apt cache
+      apt: update_cache=yes
+  roles:
+    - base
+    - ruby
+    - python

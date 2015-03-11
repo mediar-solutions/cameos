@@ -1,0 +1,15 @@
+---
+- name: install basic packages
+  apt: name={{ item }} state=present
+  with_items:
+    - python-software-properties
+    - build-essential
+    - curl
+    - git
+    - htop
+    - ntp
+    - tmux
+    - unzip
+    - vim
+    - unattended-upgrades
+    - dkms

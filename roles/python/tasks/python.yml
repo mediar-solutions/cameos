@@ -1,0 +1,7 @@
+---
+- name: install python
+  shell: bash -lc "pyenv install -s {{ item }}"
+  with_items: pythons
+- name: set global python version
+  shell: bash -lc "pyenv global {{ global_python }}"
+  when: global_python is defined

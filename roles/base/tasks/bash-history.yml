@@ -1,0 +1,7 @@
+---
+- name: enable bash history
+  lineinfile:
+    dest: /etc/profile
+    line: "export HISTTIMEFORMAT=\"%F %T \""
+    regexp: "HISTTIMEFORMAT"
+    insertafter: EOF

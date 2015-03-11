@@ -1,0 +1,13 @@
+---
+- name: install required python packages
+  apt: name={{ item }} state=present
+  with_items:
+    - python-setuptools
+    - libbz2-dev
+    - libreadline-dev
+    - libssl-dev
+    - libsqlite3-dev
+    - zlib1g-dev
+    - gfortran
+    - libopenblas-dev
+    - liblapack-dev

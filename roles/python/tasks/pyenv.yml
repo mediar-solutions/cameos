@@ -1,0 +1,35 @@
+---
+- name: install pyenv
+  git:
+    repo: git://github.com/yyuu/pyenv.git
+    dest: ~/.pyenv
+    accept_hostkey: true
+- name: create plugin directory
+  file:
+    path: ~/.pyenv/plugins/
+    owner: "{{ deploy_user }}"
+    group: "{{ deploy_user }}"
+    mode: 0755
+    state: directory
+- name: install pyenv
+  git:
+    repo: git://github.com/yyuu/{{ item }}.git
+    dest: ~/.pyenv/plugins/{{ item }}
+    accept_hostkey: true
+  with_items:
+    - pyenv
+    - pyenv-doctor
+    - pyenv-pip-rehash
+    - pyenv-virtualenv
+- name: copy bash loading
+  copy:
+    src: .pyenv.sh
+    dest: ~/.pyenv.sh
+- name: enable bash loading
+  lineinfile:
+    dest: ~/.profile
+    line: "source ~/.pyenv.sh"
+    regexp: "source ~/.pyenv.sh"
+    insertafter: EOF
+    state: present
+    create: yes
