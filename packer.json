@@ -17,7 +17,8 @@
       "source_ami": "ami-9a562df2",
       "subnet_id": "***REMOVED***",
       "ssh_username": "ubuntu",
-      "type": "amazon-ebs"
+      "type": "amazon-ebs",
+      "vpc_id": "***REMOVED***"
     }
   ],
   "post-processors": null,
