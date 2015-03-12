@@ -23,7 +23,7 @@
   "provisioners": [
     {
       "type": "ansible-local",
-      "playbook_file": "local.yml"
+      "playbook_file": "playbook.yml"
     }
   ]
 }
