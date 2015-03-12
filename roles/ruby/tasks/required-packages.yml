@@ -1,7 +1,7 @@
 ---
 - name: install required ruby packages
   apt:
-    name: {{ item }}
+    name: "{{ item }}"
     state: present
   with_items:
     - zlib1g-dev
