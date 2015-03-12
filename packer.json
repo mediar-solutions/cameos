@@ -15,8 +15,8 @@
       "region": "us-east-1",
       "secret_key": "***REMOVED***",
       "source_ami": "ami-9a562df2",
-      "subnet_id": "***REMOVED***",
       "ssh_username": "ubuntu",
+      "subnet_id": "***REMOVED***",
       "type": "amazon-ebs",
       "vpc_id": "***REMOVED***"
     }
@@ -24,8 +24,19 @@
   "post-processors": null,
   "provisioners": [
     {
-      "type": "ansible-local",
-      "playbook_file": "playbook.yml"
+      "execute_command": "echo 'ubuntu' | {{ .Vars }} sudo -S -E bash '{{ .Path }}'",
+      "inline": [
+        "sleep 30",
+        "apt-get install -y software-properties-common",
+        "apt-add-repository -y ppa:rquillo/ansible",
+        "apt-get update -q",
+        "apt-get install -y ansible"
+      ],
+      "type": "shell"
+    },
+    {
+      "playbook_file": "playbook.yml",
+      "type": "ansible-local"
     }
   ]
 }
