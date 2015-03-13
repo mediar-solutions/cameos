@@ -26,7 +26,7 @@
     {
       "execute_command": "echo 'ubuntu' | {{ .Vars }} sudo -S -E bash '{{ .Path }}'",
       "inline": [
-        "sleep 30",
+        "sleep 10",
         "apt-get install -y software-properties-common",
         "apt-add-repository -y ppa:rquillo/ansible",
         "apt-get update -q",

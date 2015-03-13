@@ -1,0 +1,18 @@
+---
+- name: add nginx repo
+  apt_repository:
+    repo: "ppa:nginx/stable"
+- name: install nginx
+  apt:
+    name: "nginx"
+    state: present
+- name: copy nginx configuration
+  copy:
+    src: nginx.conf
+    dest: /etc/nginx/nginx.conf
+- name: remove default site
+  file:
+    path: /etc/nginx/sites-enabled/default
+    state: absent
+  notify:
+    - restart ssh
