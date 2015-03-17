@@ -11,13 +11,12 @@
     group: "{{ deploy_user }}"
     mode: 0755
     state: directory
-- name: install pyenv
+- name: install pyenv plugins
   git:
     repo: git://github.com/yyuu/{{ item }}.git
     dest: ~/.pyenv/plugins/{{ item }}
     accept_hostkey: true
   with_items:
-    - pyenv
     - pyenv-doctor
     - pyenv-pip-rehash
     - pyenv-virtualenv
