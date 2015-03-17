@@ -1,0 +1,19 @@
+---
+- name: install apt key
+  apt_key:
+    id: ACCC4CF8
+    url: "https://www.postgresql.org/media/keys/ACCC4CF8.asc"
+    state: present
+- name: add repository
+  apt_repository:
+    repo: 'deb http://apt.postgresql.org/pub/repos/apt/ trusty-pgdg main'
+    state: present
+- name: install postgresql
+  apt:
+    name: "{{item}}"
+    state: present
+  with_items:
+    - postgresql-9.4
+    - postgresql-client-9.4
+    - postgresql-contrib-9.4
+    - libpq-dev

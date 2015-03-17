@@ -1,0 +1,4 @@
+---
+- include: required-packages.yml
+- include: install.yml
+- include: users.yml
