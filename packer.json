@@ -2,7 +2,7 @@
   "builders": [
     {
       "access_key": "***REMOVED***",
-      "ami_name": "packer-trusty-ruby-python",
+      "ami_name": "packer-trusty-ruby-python-postgresql",
       "instance_type": "t2.medium",
       "launch_block_device_mappings": [
         {
