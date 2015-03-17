@@ -15,4 +15,4 @@
     path: /etc/nginx/sites-enabled/default
     state: absent
   notify:
-    - restart ssh
+    - restart nginx
