@@ -35,8 +35,8 @@
       "type": "shell"
     },
     {
-      "playbook_file": "./playbook.yml",
       "playbook_dir": ".",
+      "playbook_file": "./playbook.yml",
       "type": "ansible-local"
     }
   ]
