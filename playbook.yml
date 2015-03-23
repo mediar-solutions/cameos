@@ -15,8 +15,9 @@
         update_cache: yes
   roles:
     # - { role: fast_apt }
-    - { role: base }
-    - { role: ruby }
+    - { role: base, tags: ['base'] }
+    - { role: ruby, tags: ['ruby'] }
     - { role: miniconda, tags: ['miniconda'] }
-    - { role: nginx }
-    - { role: postgresql }
+    - { role: nginx, tags: ['nginx'] }
+    - { role: postgresql, tags: ['postresql'] }
+    - { role: supervisor, tags: ['supervisor'] }
