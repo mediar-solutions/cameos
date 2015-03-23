@@ -10,5 +10,6 @@ Vagrant.configure(2) do |config|
   # config.vm.synced_folder "../data", "/vagrant_data"
   config.vm.provision :ansible do |ansible|
     ansible.playbook = "playbook.yml"
+    # ansible.tags = "miniconda"
   end
 end

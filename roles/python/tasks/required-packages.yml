@@ -4,12 +4,18 @@
     name: "{{ item }}"
     state: present
   with_items:
-    - python-setuptools
-    - libbz2-dev
-    - libreadline-dev
-    - libssl-dev
-    - libsqlite3-dev
-    - zlib1g-dev
     - gfortran
-    - libopenblas-dev
+    - libatlas-dev
+    - libatlas3gf-base
+    - libbz2-dev
     - liblapack-dev
+    - libopenblas-dev
+    - libreadline-dev
+    - libsqlite3-dev
+    - libssl-dev
+    - python-setuptools
+    - zlib1g-dev
+- name: set atlas as the default blas linear algebra routine
+  command: update-alternatives --set libblas.so.3 /usr/lib/atlas-base/atlas/libblas.so.3
+- name: set atlas as the default lapack linear algebra routine
+  command: update-alternatives --set liblapack.so.3 /usr/lib/atlas-base/atlas/liblapack.so.3

@@ -1,0 +1,11 @@
+---
+- name: ensures sources.list is configured
+  copy:
+    src: sources.list
+    dest: /etc/apt/sources.list
+    owner: root
+    group: root
+    mode: 0644
+- name: update apt cache
+  apt:
+    update_cache: yes

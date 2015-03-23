@@ -1,0 +1,32 @@
+---
+- name: download miniconda
+  sudo: yes
+  sudo_user: "{{ deploy_user }}"
+  get_url:
+    url: http://repo.continuum.io/miniconda/Miniconda3-latest-Linux-x86_64.sh
+    dest: /tmp/miniconda.sh
+    mode: 0755
+    force: yes
+- name: install miniconda
+  sudo: yes
+  sudo_user: "{{ deploy_user }}"
+  shell: /tmp/miniconda.sh -b -p ~/miniconda
+  args:
+    creates: ~/miniconda
+    executable: /bin/bash
+- name: enable bash loading
+  sudo: yes
+  sudo_user: "{{ deploy_user }}"
+  lineinfile:
+    dest: ~/.profile
+    line: "export PATH=~/miniconda/bin:$PATH"
+    regexp: "export PATH=~/miniconda/bin:$PATH"
+    insertafter: EOF
+    state: present
+    create: yes
+- name: update conda
+  sudo: yes
+  sudo_user: "{{ deploy_user }}"
+  shell: ~/miniconda/bin/conda update conda --yes -q
+  args:
+    executable: /bin/bash

@@ -14,8 +14,9 @@
       apt:
         update_cache: yes
   roles:
-    - base
-    - ruby
-    - python
-    - nginx
-    - postgresql
+    # - { role: fast_apt }
+    - { role: base }
+    - { role: ruby }
+    - { role: miniconda, tags: ['miniconda'] }
+    - { role: nginx }
+    - { role: postgresql }
