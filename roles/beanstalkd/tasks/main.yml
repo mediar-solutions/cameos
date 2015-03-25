@@ -1,0 +1,33 @@
+---
+- name: download beanstalkd
+  get_url:
+    url: https://github.com/kr/beanstalkd/archive/v1.10.tar.gz
+    dest: /tmp/beanstalkd-v1.10.tar.gz
+    mode: 0644
+    force: yes
+- name: unarchive
+  unarchive:
+    copy: no
+    src: /tmp/beanstalkd-v1.10.tar.gz
+    dest: /tmp
+- name: build
+  shell: make
+  args:
+    chdir: /tmp/beanstalkd-1.10
+- name: install
+  shell: make install
+  args:
+    chdir: /tmp/beanstalkd-1.10
+    creates: /usr/local/bin/beanstalkd
+- name: create wal directory
+  file:
+    path: /var/lib/beanstalkd
+    state: directory
+- name: copy configuration
+  copy:
+    src: beanstalkd.conf
+    dest: /etc/supervisord.d/beanstalkd.conf
+  notify:
+    - add beanstalkd
+    - start beanstalkd
+

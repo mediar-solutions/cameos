@@ -1,0 +1,9 @@
+---
+- name: add beanstalkd
+  supervisorctl:
+    name: beanstalkd
+    state: present
+- name: start beanstalkd
+  supervisorctl:
+    name: beanstalkd
+    state: started
