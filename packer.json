@@ -1,8 +1,8 @@
 {
   "builders": [
     {
-      "access_key": "***REMOVED***",
-      "ami_name": "packer-trusty-ruby-python-postgresql",
+      "access_key": "",
+      "ami_name": "",
       "instance_type": "t2.medium",
       "launch_block_device_mappings": [
         {
@@ -13,12 +13,12 @@
         }
       ],
       "region": "us-east-1",
-      "secret_key": "***REMOVED***",
+      "secret_key": "",
       "source_ami": "ami-9a562df2",
       "ssh_username": "ubuntu",
-      "subnet_id": "***REMOVED***",
+      "subnet_id": "",
       "type": "amazon-ebs",
-      "vpc_id": "***REMOVED***"
+      "vpc_id": ""
     }
   ],
   "post-processors": null,
