@@ -23,9 +23,8 @@
     src: supervisor
     dest: /etc/init.d/supervisor
     mode: 0755
-- name: enable autostart of supervisord
-  shell: update-rc.d supervisor defaults
-- name: restart supervisor
+- name: start supervisor
   service:
     name: supervisor
-    state: restarted
+    state: started
+    enabled: yes

@@ -4,7 +4,6 @@
     url: https://github.com/kr/beanstalkd/archive/v1.10.tar.gz
     dest: /tmp/beanstalkd-v1.10.tar.gz
     mode: 0644
-    force: yes
 - name: unarchive
   unarchive:
     copy: no

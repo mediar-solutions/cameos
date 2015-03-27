@@ -6,7 +6,6 @@
     url: http://repo.continuum.io/miniconda/Miniconda3-latest-Linux-x86_64.sh
     dest: /tmp/miniconda.sh
     mode: 0755
-    force: yes
 - name: install miniconda
   sudo: yes
   sudo_user: "{{ deploy_user }}"
