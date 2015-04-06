@@ -1,0 +1,6 @@
+[program:consul]
+command={{ consul_home }}/bin/consul agent -config-dir {{ consul_config_dir }} -config-file={{ consul_config_file }}
+user={{ consul_user }}
+stdout_logfile={{ consul_log_dir }}/consult-out.log
+stderr_logfile={{ consul_log_dir }}/consult-err.log
+autostart=true

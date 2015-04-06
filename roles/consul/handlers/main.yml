@@ -1,0 +1,9 @@
+---
+- name: add consul
+  supervisorctl:
+    name: consul
+    state: present
+- name: start consul
+  supervisorctl:
+    name: consul
+    state: started
