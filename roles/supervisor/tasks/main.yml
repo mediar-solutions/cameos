@@ -1,5 +1,5 @@
 ---
-- name: instal python-setuptools
+- name: install python-setuptools
   apt:
     name: python-setuptools
     state: present
