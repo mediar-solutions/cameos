@@ -28,13 +28,14 @@
       "inline": [
         "sleep 10",
         "apt-get install -y software-properties-common",
-        "apt-add-repository -y ppa:rquillo/ansible",
+        "apt-add-repository -y ppa:ansible/ansible",
         "apt-get update -q",
         "apt-get install -y ansible"
       ],
       "type": "shell"
     },
     {
+      "extra_arguments": ["--extra-vars \"deploy_user=ubuntu\""],
       "playbook_dir": ".",
       "playbook_file": "./playbook.yml",
       "type": "ansible-local"
