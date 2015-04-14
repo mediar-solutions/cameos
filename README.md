@@ -4,10 +4,12 @@
 
 The IDXP Analytics collection of Ansible roles. We have roles for:
 
-* beanstalkd
-* miniconda
-* pyenv
-* rbenv
 * supervisor
+* beanstalkd
+* ruby & rbenv
+* python & miniconda
+* python & pyenv
 * nginx
 * postgresql
+* consul
+* memcached
