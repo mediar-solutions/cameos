@@ -1,0 +1,9 @@
+---
+- name: install xfsprogs
+  apt:
+    name: xfsprogs
+    state: present
+- name: creates the filesystem
+  filesystem:
+    fstype: xfs
+    dev: /dev/xvdf
