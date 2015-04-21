@@ -14,7 +14,7 @@
       ],
       "region": "us-east-1",
       "secret_key": "",
-      "source_ami": "ami-9a562df2",
+      "source_ami": "ami-d05e75b8",
       "ssh_username": "ubuntu",
       "subnet_id": "",
       "type": "amazon-ebs",
