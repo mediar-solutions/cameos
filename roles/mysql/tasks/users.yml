@@ -1,0 +1,13 @@
+---
+- name: ensure mysql is running
+  service:
+    name: mysql
+    state: started
+- name: make sure the mysql users are present
+  mysql_user:
+    name: "{{ deploy_user }}"
+    password: ''
+    state: present
+    login_user: root
+    login_password: ''
+    priv: "*.*:ALL,GRANT"

@@ -1,0 +1,5 @@
+---
+- name: install required mysql packages
+  apt:
+    name: python-mysqldb
+    state: present

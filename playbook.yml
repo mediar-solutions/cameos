@@ -23,5 +23,6 @@
     - { role: miniconda, tags: ['miniconda'] }
     - { role: nginx, tags: ['nginx'] }
     - { role: postgresql, tags: ['postresql'] }
+    - { role: mysql, tags: ['postresql'] }
     - { role: consul, tags: ['consul'] }
     - { role: memcached, tags: ['memcached'] }
