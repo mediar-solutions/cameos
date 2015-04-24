@@ -6,22 +6,22 @@
 - name: download consul
   get_url:
     url: "{{ consul_download }}"
-    dest: "{{ consul_download_folder }}"
+    dest: /tmp
     mode: 0644
 - name: create consul group
   group:
-    name: "{{ consul_group }}"
+    name: consul
     state: present
 - name: create consul user
   user:
-    name: "{{ consul_user }}"
-    group: "{{ consul_group }}"
+    name: consul
+    group: consul
 - name: create consul directory
   file:
     state: directory
     path: "{{ item }}"
-    owner: "{{ consul_user }}"
-    group: "{{ consul_group }}"
+    owner: consul
+    group: consul
   with_items:
     - "{{ consul_home }}"
     - "{{ consul_home }}/bin"
@@ -30,22 +30,22 @@
     - "{{ consul_log_dir }}"
 - name: copy and unpack
   unarchive:
-    src: "{{ consul_download_folder }}/{{ consul_archive }}"
+    src: "/tmp/{{ consul_archive }}"
     dest: "{{ consul_home }}/bin"
     copy: no
 - name: set ownership
   file:
     state: directory
     path: "{{ consul_home }}"
-    owner: "{{ consul_user }}"
-    group: "{{ consul_group }}"
+    owner: consul
+    group: consul
     recurse: yes
 - name: consul config file
   template:
     src: consul.json.j2
     dest: "{{ consul_config_file }}"
-    owner: "{{ consul_user }}"
-    group: "{{ consul_group }}"
+    owner: consul
+    group: consul
     mode: 0755
 - name: consul supervisor config file
   template:

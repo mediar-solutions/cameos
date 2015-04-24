@@ -17,11 +17,11 @@
   roles:
     # - { role: fast_apt }
     - { role: base, tags: ['base'] }
-    - { role: supervisor, tags: ['supervisor'] }
-    - { role: beanstalkd, tags: ['beanstalkd'] }
-    - { role: ruby, tags: ['ruby'] }
-    - { role: miniconda, tags: ['miniconda'] }
-    - { role: nginx, tags: ['nginx'] }
-    - { role: postgresql, tags: ['postresql'] }
+    # - { role: supervisor, tags: ['supervisor'] }
+    # - { role: beanstalkd, tags: ['beanstalkd'] }
+    # - { role: ruby, tags: ['ruby'] }
+    # - { role: miniconda, tags: ['miniconda'] }
+    # - { role: nginx, tags: ['nginx'] }
+    # - { role: postgresql, tags: ['postresql'] }
     - { role: consul, tags: ['consul'] }
-    - { role: memcached, tags: ['memcached'] }
+    # - { role: memcached, tags: ['memcached'] }

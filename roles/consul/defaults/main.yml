@@ -2,11 +2,8 @@
 consul_version: 0.5.0
 consul_archive: "{{ consul_version }}_linux_amd64.zip"
 consul_download: "https://dl.bintray.com/mitchellh/consul/{{ consul_archive }}"
-consul_download_folder: /tmp
 consul_home: /opt/consul
 consul_config_dir: /etc/consul.d
 consul_config_file: /etc/consul.conf
 consul_log_dir: /var/log/consul
 consul_data_dir: "{{ consul_home }}/data"
-consul_user: consul
-consul_group: consul
