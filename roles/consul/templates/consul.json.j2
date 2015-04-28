@@ -1,5 +1,10 @@
 {
-  "data_dir": "{{ consul_data_dir }}",
+{% if consul_is_ui %}
+  "ui_dir": "{{ consul_home }}/dist",
+{% endif %}
+{% if consul_is_server %}
   "server": true,
-  "bootstrap_expect": 1
+  "bootstrap_expect": 1,
+{% endif %}
+  "data_dir": "{{ consul_data_dir }}"
 }

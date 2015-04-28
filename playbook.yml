@@ -10,10 +10,13 @@
     pythons:
       - 3.4.3
     global_python: 3.4.3
+    consul_is_ui: true
+    consul_is_server: true
   pre_tasks:
     - name: update apt cache
       apt:
         update_cache: yes
+        cache_valid_time: 3600
   roles:
     # - { role: fast_apt }
     - { role: base, tags: ['base'] }

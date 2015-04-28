@@ -1,53 +1,33 @@
 ---
-- name: install required packages
-  apt:
-    name: unzip
-    state: present
 - name: download consul
   get_url:
     url: "{{ consul_download }}"
-    dest: /tmp
+    dest: "/tmp/{{ consul_archive }}"
     mode: 0644
-- name: create consul group
-  group:
-    name: consul
-    state: present
-- name: create consul user
-  user:
-    name: consul
-    group: consul
-- name: create consul directory
-  file:
-    state: directory
-    path: "{{ item }}"
-    owner: consul
-    group: consul
-  with_items:
-    - "{{ consul_home }}"
-    - "{{ consul_home }}/bin"
-    - "{{ consul_data_dir }}"
-    - "{{ consul_config_dir }}"
-    - "{{ consul_log_dir }}"
-- name: copy and unpack
+  become: yes
+  become_user: consul
+- name: unpack consul
   unarchive:
     src: "/tmp/{{ consul_archive }}"
     dest: "{{ consul_home }}/bin"
     copy: no
-- name: set ownership
-  file:
-    state: directory
-    path: "{{ consul_home }}"
-    owner: consul
-    group: consul
-    recurse: yes
-- name: consul config file
+  become: yes
+  become_user: consul
+- name: add consul to path through profile.d
+  template:
+    src: consul.sh.j2
+    dest: /etc/profile.d/consul.sh
+    mode: 0755
+- name: install consul config file
   template:
     src: consul.json.j2
     dest: "{{ consul_config_file }}"
     owner: consul
     group: consul
     mode: 0755
-- name: consul supervisor config file
+  notify:
+    - restart consul
+- name: install consul supervisor config file
   template:
     src: consul.conf.j2
     dest: /etc/supervisord.d/consul.conf
