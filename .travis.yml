@@ -1,6 +1,11 @@
 notifications:
   email: false
-  hipchat: 606f5bef2dbd083ecbb37fc4c9cb10@Dev
+  hipchat:
+    rooms:
+      - 606f5bef2dbd083ecbb37fc4c9cb10@Dev
+    template:
+      - '%{repository}#%{build_number} (%{branch} - %{commit} : %{author}): %{message}'
+    notify: true
 before_install:
   - sudo service postgresql stop
   - sudo rm -rf /var/lib/postgresql
