@@ -12,6 +12,7 @@
     global_python: 3.4.3
     consul_is_ui: true
     consul_is_server: true
+    consul_bootstrap_expect: 1
   pre_tasks:
     - name: update apt cache
       apt:
