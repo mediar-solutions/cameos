@@ -1,0 +1,19 @@
+notifications:
+  email: false
+  hipchat: 606f5bef2dbd083ecbb37fc4c9cb10@Dev
+before_install:
+  - sudo service postgresql stop
+  - sudo rm -rf /var/lib/postgresql
+  - sudo apt-get purge postgresql postgresql-9.1 postgresql-9.2 postgresql-9.3 postgresql-9.4 postgresql-common
+  - sudo apt-get autoremove
+install:
+  - sudo apt-add-repository -y ppa:ansible/ansible
+  - sudo apt-get update -qq
+  - sudo apt-get install -yq ansible
+before_script:
+  - sed -i 's/all/127.0.0.1/' playbook.yml
+  - sed -i 's/vagrant/travis/' playbook.yml
+  - sed -i 's/trusty/precise/' roles/postgresql/tasks/install.yml
+  - cp .travis.supervisor.init roles/supervisor/files/supervisor
+script:
+  - PYTHONUNBUFFERED=1 ANSIBLE_FORCE_COLOR=true ansible-playbook playbook.yml --connection=local
