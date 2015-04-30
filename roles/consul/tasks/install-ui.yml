@@ -1,0 +1,28 @@
+---
+- name: download consul-ui
+  get_url:
+    url: "{{ consul_ui_download }}"
+    dest: "/tmp/{{ consul_ui_archive }}"
+    mode: 0644
+  become: yes
+  become_user: consul
+- name: unpack consul-ui
+  unarchive:
+    src: "/tmp/{{ consul_ui_archive }}"
+    dest: "{{ consul_home }}"
+    copy: no
+  become: yes
+  become_user: consul
+- name: add consul nginx vhost
+  template:
+    src: consul-nginx.j2
+    dest: /etc/nginx/sites-available/consul
+  notify:
+    - restart nginx
+- name: symlink consul nginx vhost
+  file:
+    state: link
+    src: /etc/nginx/sites-available/consul
+    path: /etc/nginx/sites-enabled/consul
+  notify:
+    - restart nginx

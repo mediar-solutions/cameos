@@ -7,3 +7,7 @@
   supervisorctl:
     name: consul
     state: started
+- name: restart consul
+  supervisorctl:
+    name: consul
+    state: restarted

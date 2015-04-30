@@ -1,0 +1,21 @@
+---
+- name: create consul group
+  group:
+    name: consul
+    state: present
+- name: create consul user
+  user:
+    name: consul
+    group: consul
+- name: create consul directory
+  file:
+    state: directory
+    path: "{{ item }}"
+    owner: consul
+    group: consul
+  with_items:
+    - "{{ consul_home }}"
+    - "{{ consul_home }}/bin"
+    - "{{ consul_data_dir }}"
+    - "{{ consul_config_dir }}"
+    - "{{ consul_log_dir }}"
