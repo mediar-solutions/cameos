@@ -19,10 +19,8 @@
   lineinfile:
     dest: ~/.profile
     line: "export PATH=~/miniconda/bin:$PATH"
-    regexp: "export PATH=~/miniconda/bin:$PATH"
+    regexp: "miniconda"
     insertafter: EOF
-    state: present
-    create: yes
 - name: update conda
   become: yes
   become_user: "{{ deploy_user }}"
