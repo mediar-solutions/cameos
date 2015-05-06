@@ -16,6 +16,7 @@
   with_items:
     - "{{ consul_home }}"
     - "{{ consul_home }}/bin"
+    - "{{ consul_home }}/check_scripts"
     - "{{ consul_data_dir }}"
     - "{{ consul_config_dir }}"
     - "{{ consul_log_dir }}"
