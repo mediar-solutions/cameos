@@ -23,8 +23,8 @@
     path: /var/lib/beanstalkd
     state: directory
 - name: copy configuration
-  copy:
-    src: beanstalkd.conf
+  template:
+    src: beanstalkd.conf.j2
     dest: /etc/supervisord.d/beanstalkd.conf
   notify:
     - add beanstalkd

@@ -1,6 +1,7 @@
 [program:beanstalkd]
 command=beanstalkd -V -z 1000000 -b /var/lib/beanstalkd/
 user=root
+priority={{ beanstalkd_supervisor_priority }}
 stdout_logfile=/var/log/supervisor/beanstalkd-out.log
 stderr_logfile=/var/log/supervisor/beanstalkd-err.log
 autostart=true
