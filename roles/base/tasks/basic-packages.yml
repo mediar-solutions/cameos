@@ -12,7 +12,6 @@
     - git
     - htop
     - ntp
-    - tmux
     - unzip
     - vim
     - unattended-upgrades

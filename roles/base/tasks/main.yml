@@ -4,4 +4,5 @@
 - include: basic-packages.yml
 - include: unattended-upgrades.yml
 - include: vim-default.yml
+- include: tmux.yml
 - include: ssh.yml

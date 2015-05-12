@@ -1,0 +1,17 @@
+---
+- name: install tmux
+  apt:
+    name: tmux
+    state: present
+- name: copy ssh config file
+  become: yes
+  become_user: {{ deploy_user }}
+  copy:
+    src: rc
+    dest: ~/.ssh/rc
+- name: copy tmux config file
+  become: yes
+  become_user: {{ deploy_user }}
+  copy:
+    src: tmux.conf
+    dest: ~/.tmux.conf
