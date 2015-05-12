@@ -8,9 +8,9 @@
 {% if consul_uses_atlas %}
   "atlas_infrastructure": {{ consul_atlas_infrastructure }},
   "atlas_token": {{ consul_atlas_token }},
-  {% if consul_atlas_autojoin is defined %}
+{% if consul_atlas_join is defined %}
   "atlas_join": true,
-  {% endif %}
+{% endif %}
 {% endif %}
 {% if consul_is_server %}
   "server": true,
