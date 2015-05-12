@@ -5,6 +5,13 @@
 {% if consul_bind_addr is defined %}
   "bind_addr": "{{ consul_bind_addr }}",
 {% endif %}
+{% if consul_uses_atlas %}
+  "atlas_infrastructure": {{ consul_atlas_infrastructure }},
+  "atlas_token": {{ consul_atlas_token }},
+  {% if consul_atlas_autojoin is defined %}
+  "atlas_join": true,
+  {% endif %}
+{% endif %}
 {% if consul_is_server %}
   "server": true,
   "bootstrap_expect": {{ consul_bootstrap_expect }},

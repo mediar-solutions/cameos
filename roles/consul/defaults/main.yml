@@ -1,6 +1,7 @@
 ---
 consul_is_ui: false
 consul_is_server: false
+consul_uses_atlas: false
 consul_bootstrap_expect: 3
 consul_version: 0.5.0
 consul_archive: "{{ consul_version }}_linux_amd64.zip"
