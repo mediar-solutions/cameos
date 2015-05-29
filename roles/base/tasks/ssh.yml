@@ -10,4 +10,4 @@
     - { line: "ClientAliveInterval 60", regexp: "^ClientAliveInterval 60$" }
     - { line: "ClientAliveCountMax 60", regexp: "^ClientAliveCountMax 60$" }
   notify:
-    - reload ssh
+    - restart ssh

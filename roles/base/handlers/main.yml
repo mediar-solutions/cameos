@@ -1,5 +1,5 @@
 ---
-- name: reload ssh
+- name: restart ssh
   service:
     name: ssh
-    state: reloaded
+    state: restarted
