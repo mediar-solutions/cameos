@@ -10,7 +10,7 @@ consul_ui_archive: "{{ consul_version }}_web_ui.zip"
 consul_ui_download: "https://dl.bintray.com/mitchellh/consul/{{ consul_ui_archive }}"
 consul_home: /opt/consul
 consul_config_dir: /etc/consul.d
-consul_config_file: /etc/consul.conf
+consul_config_file: /etc/consul.json
 consul_log_dir: /var/log/consul
 consul_data_dir: "{{ consul_home }}/data"
 consul_supervisor_priority: 10
