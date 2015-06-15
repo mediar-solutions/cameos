@@ -1,5 +1,7 @@
 ---
 - name: install required packages
   apt:
-    name: unzip
+    name: "{{ item }}"
     state: present
+  with_items:
+    - unzip
