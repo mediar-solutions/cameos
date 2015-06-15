@@ -1,8 +1,8 @@
 ---
 - name: configure unattended upgrades
   copy:
-    src: 10periodic
-    dest: /etc/apt/apt.conf.d/10periodic
-  copy:
-    src: 50unattended-upgrades
-    dest: /etc/apt/apt.conf.d/50unattended-upgrades
+    src: "{{ item.src }}"
+    dest: "{{ item.dest }}"
+  with_items:
+    - { src: "10periodic", dest: "/etc/apt/apt.conf.d/10periodic" }
+    - { src: "50unattended-upgrades", dest: "/etc/apt/apt.conf.d/50unattended-upgrades" }
