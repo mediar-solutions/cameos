@@ -1,5 +1,5 @@
 ---
-- name: copy consul configuration files
+- name: copy supervisor configuration files
   become: yes
   become_user: consul
   template:
@@ -7,7 +7,7 @@
     dest: "{{ consul_config_dir }}/supervisord.json"
   notify:
     - restart consul
-- name: copy consul checks
+- name: copy supervisor checks
   become: yes
   become_user: consul
   copy:
