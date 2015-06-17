@@ -22,7 +22,7 @@
   roles:
     # - { role: fast_apt }
     - { role: base, tags: ['base'] }
-    - { role: supervisord, tags: ['supervisord'] }
+    - { role: supervisor, tags: ['supervisor'] }
     - { role: beanstalkd, tags: ['beanstalkd'] }
     - { role: ruby, tags: ['ruby'] }
     - { role: miniconda, tags: ['miniconda'] }
