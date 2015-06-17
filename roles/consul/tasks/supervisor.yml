@@ -11,7 +11,7 @@
   become: yes
   become_user: consul
   copy:
-    src: consul_checks/supervisord-running.sh
+    src: supervisord-running.sh
     dest: "{{ consul_home }}/check_scripts/supervisord-running.sh"
     mode: 0755
   notify:
