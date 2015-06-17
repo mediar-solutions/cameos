@@ -3,21 +3,16 @@
   become: yes
   become_user: consul
   template:
-    src: "{{ item }}.j2"
-    dest: "{{ consul_config_dir }}/{{ item }}"
-  with_items:
-    - checks.json
-    - services.json
+    src: supervisord.json.j2
+    dest: "{{ consul_config_dir }}/supervisord.json"
   notify:
     - restart consul
 - name: copy consul checks
   become: yes
   become_user: consul
   copy:
-    src: "consul_checks/{{ item }}"
-    dest: "{{ consul_home }}/check_scripts/{{ item }}"
+    src: consul_checks/supervisord-running.sh
+    dest: "{{ consul_home }}/check_scripts/supervisord-running.sh"
     mode: 0755
-  with_items:
-    - supervisord-running.sh
   notify:
     - restart consul

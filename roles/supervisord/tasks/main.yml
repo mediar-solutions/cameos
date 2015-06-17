@@ -1,4 +1,4 @@
 ---
 - include: install.yml
-- include: install-ui.yml
+- include: consul.yml
   when: consul_aware
