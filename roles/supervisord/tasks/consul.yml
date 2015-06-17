@@ -1,0 +1,23 @@
+---
+- name: copy consul configuration files
+  become: yes
+  become_user: consul
+  template:
+    src: "{{ item }}.j2"
+    dest: "{{ consul_config_dir }}/{{ item }}"
+  with_items:
+    - checks.json
+    - services.json
+  notify:
+    - restart consul
+- name: copy consul checks
+  become: yes
+  become_user: consul
+  copy:
+    src: "consul_checks/{{ item }}"
+    dest: "{{ consul_home }}/check_scripts/{{ item }}"
+    mode: 0755
+  with_items:
+    - supervisord-running.sh
+  notify:
+    - restart consul

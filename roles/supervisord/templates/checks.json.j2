@@ -1,0 +1,10 @@
+{
+  "checks": [
+    {
+      "name": "supervisord-running",
+      "script": "{{ consul_home }}/check_scripts/supervisord-running.sh",
+      "interval": "10s",
+      "service_id": "supervisord"
+    }
+  ]
+}

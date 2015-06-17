@@ -10,6 +10,7 @@
     pythons:
       - 3.4.3
     global_python: 3.4.3
+    consul_aware: true
     consul_is_ui: true
     consul_is_server: true
     consul_bootstrap_expect: 1
@@ -21,7 +22,7 @@
   roles:
     # - { role: fast_apt }
     - { role: base, tags: ['base'] }
-    - { role: supervisor, tags: ['supervisor'] }
+    - { role: supervisord, tags: ['supervisord'] }
     - { role: beanstalkd, tags: ['beanstalkd'] }
     - { role: ruby, tags: ['ruby'] }
     - { role: miniconda, tags: ['miniconda'] }
