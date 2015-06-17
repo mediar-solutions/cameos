@@ -1,0 +1,24 @@
+{
+  "service": {
+    "id": "beanstalkd",
+    "name": "beanstalkd",
+    "tags": ["beanstalkd"],
+    "port": 11300
+  },
+  "checks": [
+    {
+      "id": "beanstalkd-running",
+      "name": "Beanstalkd running",
+      "script": "{{ consul_home }}/check_scripts/beanstalkd-running.sh",
+      "interval": "10s",
+      "service_id": "beanstalkd"
+    },
+    {
+      "id": "beanstalkd-queue",
+      "name": "Beanstalkd queue with reasonable size",
+      "script": "{{ consul_home }}/check_scripts/beanstalkd-queue.py",
+      "interval": "20s",
+      "service_id": "beanstalkd"
+    }
+  ]
+}

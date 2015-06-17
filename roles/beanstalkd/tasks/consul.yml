@@ -1,0 +1,28 @@
+---
+- name: install system-wide pip
+  apt:
+    name: python-pip
+- name: install system-wide python libraries
+  pip:
+    name: "{{ item }}"
+  with_items:
+    - boto
+    - beanstalkc
+- name: copy consul configuration files
+  become: yes
+  become_user: consul
+  template:
+    src: beanstalkd.json.j2
+    dest: "{{ consul_config_dir }}/beanstalkd.json"
+  notify:
+    - restart consul
+- name: copy consul checks
+  become: yes
+  become_user: consul
+  copy:
+    src: "consul_checks/{{ item }}"
+    dest: "{{ consul_home }}/check_scripts/{{ item }}"
+    mode: 0755
+  with_items:
+    - beanstalkd-running.sh
+    - beanstalkd-queue.py

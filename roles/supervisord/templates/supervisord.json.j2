@@ -1,0 +1,17 @@
+{
+  "service": {
+    "id": "supervisord",
+    "name": "supervisord",
+    "tags": ["supervisord"],
+    "port": 9001
+  },
+  "checks": [
+    {
+      "id": "supervisord-running",
+      "name": "Supervisord running",
+      "script": "{{ consul_home }}/check_scripts/supervisord-running.sh",
+      "interval": "10s",
+      "service_id": "supervisord"
+    }
+  ]
+}
