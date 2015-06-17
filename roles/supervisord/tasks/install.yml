@@ -3,7 +3,7 @@
   apt:
     name: python-setuptools
     state: present
-- name: install supervisor
+- name: install supervisord
   easy_install:
     name: supervisor
 - name: create configuration directory
@@ -12,7 +12,7 @@
     state: directory
 - name: create log directory
   file:
-    path: /var/log/supervisor
+    path: /var/log/supervisord
     state: directory
 - name: copy the configuration
   copy:
@@ -20,11 +20,11 @@
     dest: /etc/supervisord.conf
 - name: copy init.d script
   copy:
-    src: supervisor
-    dest: /etc/init.d/supervisor
+    src: supervisord
+    dest: /etc/init.d/supervisord
     mode: 0755
 - name: start supervisor
   service:
-    name: supervisor
+    name: supervisord
     state: started
     enabled: yes
