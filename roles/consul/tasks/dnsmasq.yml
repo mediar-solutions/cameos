@@ -3,9 +3,6 @@
   apt:
     name: dnsmasq
     state: present
-  with_items:
-    - unzip
-    - dnsmasq
 - name: copy dnsmasq configuration
   copy:
     src: 10-consul
