@@ -1,4 +1,4 @@
 ---
 dependencies:
-  - { role: supervisord }
+  - { role: supervisor }
   - { role: consul , when: consul_aware }

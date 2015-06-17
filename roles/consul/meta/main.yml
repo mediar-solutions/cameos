@@ -1,4 +1,4 @@
 ---
 dependencies:
-  - { role: supervisord }
+  - { role: supervisor }
   - { role: nginx, when: consul_is_ui }
