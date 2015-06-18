@@ -20,7 +20,7 @@
   become: yes
   become_user: consul
   copy:
-    src: "consul_checks/{{ item }}"
+    src: "{{ item }}"
     dest: "{{ consul_home }}/check_scripts/{{ item }}"
     mode: 0755
   with_items:
