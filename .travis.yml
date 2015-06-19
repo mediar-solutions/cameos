@@ -15,7 +15,7 @@ install:
   - sudo apt-get install python-pip git
   - sudo pip install paramiko PyYAML Jinja2 httplib2
   - git clone --branch v1.9.2-0.1.rc1 --depth 1 --recursive https://github.com/ansible/ansible.git ~/ansible
-  - cd ~/ansible; sudo python setup.py install
+  - cd ~/ansible; sudo python setup.py install; cd -
 before_script:
   - sed -i 's/all/127.0.0.1/' playbook.yml
   - sed -i 's/vagrant/travis/' playbook.yml
