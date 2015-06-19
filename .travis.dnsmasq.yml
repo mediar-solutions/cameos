@@ -1,0 +1,9 @@
+---
+- name: install dnsmasq
+  apt:
+    name: dnsmasq
+    state: present
+- name: copy dnsmasq configuration
+  copy:
+    src: 10-consul
+    dest: /etc/dnsmasq.d/10-consul
