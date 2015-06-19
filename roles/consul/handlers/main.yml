@@ -1,12 +1,4 @@
 ---
-- name: add consul
-  supervisorctl:
-    name: consul
-    state: present
-- name: start consul
-  supervisorctl:
-    name: consul
-    state: started
 - name: restart consul
   supervisorctl:
     name: consul

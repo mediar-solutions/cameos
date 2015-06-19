@@ -31,6 +31,7 @@
   template:
     src: consul.conf.j2
     dest: /etc/supervisord.d/consul.conf
-  notify:
-    - add consul
-    - start consul
+- name: add consul to supervisor
+  supervisorctl:
+    name: consul
+    state: present

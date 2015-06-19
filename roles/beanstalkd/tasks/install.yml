@@ -26,7 +26,7 @@
   template:
     src: beanstalkd.conf.j2
     dest: /etc/supervisord.d/beanstalkd.conf
-  notify:
-    - add beanstalkd
-    - start beanstalkd
-
+- name: add beanstalkd to supervisor
+  supervisorctl:
+    name: beanstalkd
+    state: present
