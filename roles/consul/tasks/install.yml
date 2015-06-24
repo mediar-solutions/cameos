@@ -21,7 +21,7 @@
 - name: check if config file already exists
   stat:
     path: "{{ consul_config_file }}"
-    register: config_file
+  register: config_file
 - name: install consul config file
   template:
     src: consul.json.j2
