@@ -13,7 +13,7 @@
         {
             "name": "Memory Util",
             "interval": "30s",
-            "script": "/usr/lib/nagios/plugins/check_mem -w 85% -c 95%"
+            "script": "/usr/lib/nagios/plugins/check_mem -u -C -w 85 -c 95"
         }
     ]
 }
