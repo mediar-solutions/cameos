@@ -6,3 +6,4 @@
   when: consul_is_ui
 - include: dnsmasq.yml
 - include: supervisor.yml
+- include: syschecks.yml

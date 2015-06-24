@@ -1,0 +1,19 @@
+{
+    "checks": [
+        {
+            "name": "Disk Util",
+            "interval": "60s",
+            "script": "/usr/lib/nagios/plugins/check_disk -w 10% -c 5% -p /"
+        },
+        {
+            "name": "Load Avg",
+            "interval": "30s",
+            "script": "/usr/lib/nagios/plugins/check_load -w 1,1,1 -c 2,2,2"
+        },
+        {
+            "name": "Memory Util",
+            "interval": "30s",
+            "script": "/usr/lib/nagios/plugins/check_mem -w 85% -c 95%"
+        }
+    ]
+}
