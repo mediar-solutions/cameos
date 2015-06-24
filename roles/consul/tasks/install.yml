@@ -18,6 +18,10 @@
     src: consul.sh.j2
     dest: /etc/profile.d/consul.sh
     mode: 0755
+- name: check if config file already exists
+  stat:
+    path: "{{ consul_config_file }}"
+    register: config_file
 - name: install consul config file
   template:
     src: consul.json.j2
@@ -25,6 +29,7 @@
     owner: consul
     group: consul
     mode: 0755
+  when: not config_file.stat.exists
   notify:
     - restart consul
 - name: install consul supervisor config file
