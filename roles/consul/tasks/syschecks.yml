@@ -3,6 +3,11 @@
   apt:
     name: nagios-plugins-basic
     state: present
+- name: install check_mem script
+  get_url:
+    url: https://raw.githubusercontent.com/justintime/nagios-plugins/master/check_mem/check_mem.pl
+    dest: /usr/lib/nagios/plugins/check_mem
+    mode: 755
 - name: copy syschecks file
   become: yes
   become_user: consul
