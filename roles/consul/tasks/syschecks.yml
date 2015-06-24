@@ -7,7 +7,7 @@
   become: yes
   become_user: consul
   copy:
-    src: syschecks.sh
+    src: syschecks.json
     dest: "{{ consul_config_dir }}/syschecks.json"
     mode: 0755
   notify:
