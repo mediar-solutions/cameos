@@ -8,11 +8,13 @@
     url: https://raw.githubusercontent.com/justintime/nagios-plugins/master/check_mem/check_mem.pl
     dest: /usr/lib/nagios/plugins/check_mem
     mode: 0755
+- include: syschecks-ec2.yml
+  when: running_on_ec2
 - name: copy syschecks file
   become: yes
   become_user: consul
-  copy:
-    src: syschecks.json
+  template:
+    src: syschecks.json.j2
     dest: "{{ consul_config_dir }}/syschecks.json"
     mode: 0644
   notify:

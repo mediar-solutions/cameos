@@ -8,7 +8,7 @@ Vagrant.configure(2) do |config|
   # config.vm.network 'private_network', ip: '192.168.33.10'
   # config.vm.network 'public_network'
 
-  config.vbguest.auto_update = false config.methods.include? :vbguest
+  config.vbguest.auto_update = false if config.methods.include? :vbguest
 
   # config.vm.synced_folder '../data', '/vagrant_data'
   config.vm.provision :ansible do |ansible|

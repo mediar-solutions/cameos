@@ -1,0 +1,27 @@
+{
+  "checks": [
+    {
+      "name": "Disk utilization",
+      "interval": "60s",
+      "script": "/usr/lib/nagios/plugins/check_disk -w 10% -c 5% -p /"
+    },
+    {%- if running_on_ec2 %}
+    {
+      "name": "Load average",
+      "interval": "30s",
+      "script": "/usr/lib/nagios/plugins/check_ec2_load -w 0.9 -c 0.95"
+    },
+    {%- else %}
+    {
+      "name": "Load average",
+      "interval": "30s",
+      "script": "/usr/lib/nagios/plugins/check_load -w 1,1,1 -c 2,2,2"
+    },
+    {%- endif %}
+    {
+      "name": "Memory utilization",
+      "interval": "30s",
+      "script": "/usr/lib/nagios/plugins/check_mem -u -C -w 85 -c 95"
+    }
+  ]
+}

@@ -1,0 +1,16 @@
+---
+- name: install python-pip
+  apt:
+    name: python-pip
+    state: present
+- name: install system-wide python libraries
+  pip:
+    name: "{{ item }}"
+  with_items:
+    - boto3
+    - requests
+- name: install check_ec2_load script
+  template:
+    src: check_ec2_load.py.j2
+    dest: /usr/lib/nagios/plugins/check_ec2_load
+    mode: 0755

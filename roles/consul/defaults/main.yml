@@ -14,3 +14,4 @@ consul_config_file: /etc/consul.json
 consul_log_dir: /var/log/consul
 consul_data_dir: "{{ consul_home }}/data"
 consul_supervisor_priority: 10
+running_on_ec2: false
