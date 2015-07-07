@@ -1,6 +1,6 @@
 #!/bin/bash
 
-if ps -ef | grep [p]ostgresql; then
+if ps -ef | grep [p]ostgresql | grep -v running; then
 	echo "postgresql running"
 	exit 0
 else
