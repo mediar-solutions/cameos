@@ -1,0 +1,3 @@
+---
+dependencies:
+  - { role: consul, when: consul_aware }
