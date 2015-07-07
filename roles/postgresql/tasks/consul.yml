@@ -1,0 +1,16 @@
+---
+- name: copy consul configuration files
+  become: yes
+  become_user: consul
+  template:
+    src: postgresql.json.j2
+    dest: "{{ consul_config_dir }}/postgresql.json"
+- name: copy consul checks
+  become: yes
+  become_user: consul
+  copy:
+    src: postgresql-running.sh
+    dest: "{{ consul_home }}/check_scripts/postgresql-running.sh"
+    mode: 0755
+  notify:
+    - restart consul

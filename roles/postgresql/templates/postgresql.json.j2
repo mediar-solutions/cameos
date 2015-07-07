@@ -1,0 +1,24 @@
+{
+  "service": {
+    "id": "postgresql",
+    "name": "postgresql",
+    "tags": ["postgresql"],
+    "port": 5432
+  },
+  "checks": [
+    {
+      "id": "postgresql-running",
+      "name": "PostgreSQL running",
+      "script": "{{ consul_home }}/check_scripts/postgresql-running.sh",
+      "interval": "10s",
+      "service_id": "postgresql"
+    },
+    {
+      "id": "postgresql-disk-utilization",
+      "name": "PostgreSQL disk utilization",
+      "script": "/usr/lib/nagios/plugins/check_disk -w 10% -c 5% -p /var/lib/postgresql",
+      "interval": "60s",
+      "service_id": "postgresql"
+    }
+  ]
+}
