@@ -8,6 +8,7 @@
     name: ubuntu
     group: ubuntu
     groups: "sudo"
+    shell: /bin/bash
 - name: configure sudoers
   copy:
     src: ansible
