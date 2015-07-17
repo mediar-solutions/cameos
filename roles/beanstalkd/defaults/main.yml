@@ -1,3 +1,4 @@
 ---
 beanstalkd_supervisor_priority: 20
 beanstalkd_job_size: 2000000
+consul_aware: false
