@@ -21,6 +21,7 @@
         update_cache: yes
         cache_valid_time: 3600
   roles:
+    # - { role: naked }
     # - { role: fast_apt }
     - { role: base, tags: ['base'] }
     - { role: supervisor, tags: ['supervisor'] }
