@@ -1,0 +1,32 @@
+---
+- name: create ubuntu group
+  group:
+    name: ubuntu
+    state: present
+- name: create ubuntu user
+  user:
+    name: ubuntu
+    group: ubuntu
+    groups: "sudo"
+    shell: /bin/bash
+- name: configure sudoers
+  copy:
+    src: ansible
+    dest: /etc/sudoers.d/ansible
+    validate: "visudo -cf %s"
+    owner: root
+    group: root
+    mode: 0440
+- name: create .ssh dir
+  file:
+    dest: /home/ubuntu/.ssh
+    state: directory
+    owner: ubuntu
+    group: ubuntu
+    mode: 0700
+- name: copy authorized keys over
+  command: cp /root/.ssh/authorized_keys /home/ubuntu/.ssh/authorized_keys
+  args:
+    creates: /home/ubuntu/.ssh/authorized_keys
+    owner: ubuntu
+    group: ubuntu
