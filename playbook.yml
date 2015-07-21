@@ -24,6 +24,7 @@
     # - { role: naked }
     # - { role: fast_apt }
     - { role: base, tags: ['base'] }
+    - { role: java, tags: ['java'] }
     - { role: supervisor, tags: ['supervisor'] }
     - { role: consul, tags: ['consul'] }
     - { role: beanstalkd, tags: ['beanstalkd'] }
