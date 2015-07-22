@@ -1,0 +1,11 @@
+---
+- name: add webupd8team repo
+  apt_repository:
+    repo: "ppa:webupd8team/java"
+    update-cache: yes
+- name: automatically agree to the oracle license terms
+  shell: echo debconf shared/accepted-oracle-license-v1-1 select true | debconf-set-selections
+- name: install oracle java 7
+  apt:
+    state: latest
+    pkg: oracle-java7-installer

@@ -4,17 +4,20 @@
 
 The IDXP Analytics collection of Ansible roles.
 
+* java 7
+* solr 5
 * supervisor
+* consul
 * beanstalkd
-* ruby through rbenv
-* python through miniconda
-* python through pyenv
+* ruby (rbenv)
+* python (miniconda and pyenv)
 * nginx
 * postgresql
-* consul
 * memcached
 
 ## Usage
+
+Try to respect the order listed in the sample `playbook.yml` file when using more than one role.
 
 **On a local VM with Vagrant**
 
@@ -31,7 +34,7 @@ Install `ansible` from [source](http://docs.ansible.com/intro_installation.html#
 For a remote server
 
 ```
-PYTHONUNBUFFERED=1 ANSIBLE_FORCE_COLOR=true ansible-playbook -i '52.7.110.193,' --extra-vars='deploy_user=ubuntu' --user=ubuntu playbook.yml
+PYTHONUNBUFFERED=1 ANSIBLE_FORCE_COLOR=true ansible-playbook -i '8.8.8.8,' --extra-vars='deploy_user=ubuntu' --user=ubuntu playbook.yml
 ```
 
 And to apply to yourself
