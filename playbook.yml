@@ -25,6 +25,7 @@
     # - { role: fast_apt }
     - { role: base, tags: ['base'] }
     - { role: java, tags: ['java'] }
+    - { role: solr, tags: ['solr'] }
     - { role: supervisor, tags: ['supervisor'] }
     - { role: consul, tags: ['consul'] }
     - { role: beanstalkd, tags: ['beanstalkd'] }
