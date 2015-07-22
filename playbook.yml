@@ -30,6 +30,7 @@
     - { role: consul, tags: ['consul'] }
     - { role: beanstalkd, tags: ['beanstalkd'] }
     - { role: ruby, tags: ['ruby'] }
+    # - { role: python }
     - { role: miniconda, tags: ['miniconda'] }
     - { role: nginx, tags: ['nginx'] }
     - { role: postgresql, tags: ['postresql'] }
