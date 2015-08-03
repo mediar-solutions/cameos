@@ -16,3 +16,7 @@
     state: absent
   notify:
     - restart nginx
+- name: generate dhparams.pem
+  command: openssl dhparam -out dhparam.pem 4096
+  args:
+    chdir: /etc/ssl/certs
