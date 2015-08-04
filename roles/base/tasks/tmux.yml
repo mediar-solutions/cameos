@@ -3,7 +3,7 @@
   apt:
     name: tmux
     state: present
-- name: copy ssh config file
+- name: copy tmux specific ssh config file
   become: yes
   become_user: "{{ deploy_user }}"
   copy:

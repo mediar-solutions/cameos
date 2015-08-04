@@ -5,6 +5,9 @@
 {% if consul_bind_addr is defined %}
   "bind_addr": "{{ consul_bind_addr }}",
 {% endif %}
+{% if consul_node_name %}
+  "node_name": "{{ consul_node_name }}",
+{% endif %}
 {% if consul_uses_atlas %}
   "atlas_infrastructure": "{{ consul_atlas_infrastructure }}",
   "atlas_token": "{{ consul_atlas_token }}",
