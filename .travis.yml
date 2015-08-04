@@ -23,4 +23,4 @@ before_script:
   - cp .travis.supervisor.init roles/supervisor/files/supervisor
   - cp .travis.dnsmasq.yml roles/consul/tasks/dnsmasq.yml
 script:
-  - PYTHONUNBUFFERED=1 ANSIBLE_FORCE_COLOR=true ansible-playbook playbook.yml --connection=local -i 'localhost,'
+  - travis_wait PYTHONUNBUFFERED=1 ANSIBLE_FORCE_COLOR=true ansible-playbook playbook.yml --connection=local -i 'localhost,'
