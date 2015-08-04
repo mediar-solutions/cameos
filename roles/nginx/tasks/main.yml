@@ -13,7 +13,7 @@
 - name: create ssl directory
   file:
     path: /etc/nginx/ssl
-    state: present
+    state: directory
 - name: remove default site
   file:
     path: /etc/nginx/sites-enabled/default
