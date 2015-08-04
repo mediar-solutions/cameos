@@ -4,6 +4,7 @@
 - include: install.yml
 - include: install-ui.yml
   when: consul_is_ui
+- include: install-template.yml
 - include: dnsmasq.yml
 - include: supervisor.yml
 - include: syschecks.yml

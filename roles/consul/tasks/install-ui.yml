@@ -1,24 +1,22 @@
 ---
 - name: download consul-ui
+  become: yes
+  become_user: consul
   get_url:
     url: "{{ consul_ui_download }}"
     dest: "/tmp/{{ consul_ui_archive }}"
     mode: 0644
+- name: unpack consul-ui
   become: yes
   become_user: consul
-- name: unpack consul-ui
   unarchive:
     src: "/tmp/{{ consul_ui_archive }}"
     dest: "{{ consul_home }}"
     copy: no
-  become: yes
-  become_user: consul
 - name: add consul nginx vhost
   template:
-    src: consul-nginx.j2
+    src: consul.vhost.j2
     dest: /etc/nginx/sites-available/consul
-  notify:
-    - restart nginx
 - name: symlink consul nginx vhost
   file:
     state: link

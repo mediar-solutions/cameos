@@ -1,18 +1,18 @@
 ---
 - name: download consul
+  become: yes
+  become_user: consul
   get_url:
     url: "{{ consul_download }}"
     dest: "/tmp/{{ consul_archive }}"
     mode: 0644
+- name: unpack consul
   become: yes
   become_user: consul
-- name: unpack consul
   unarchive:
     src: "/tmp/{{ consul_archive }}"
     dest: "{{ consul_home }}/bin"
     copy: no
-  become: yes
-  become_user: consul
 - name: add consul to path through profile.d
   template:
     src: consul.sh.j2

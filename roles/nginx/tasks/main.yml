@@ -10,6 +10,10 @@
   copy:
     src: nginx.conf
     dest: /etc/nginx/nginx.conf
+- name: create ssl directory
+  file:
+    path: /etc/nginx/ssl
+    state: present
 - name: remove default site
   file:
     path: /etc/nginx/sites-enabled/default
@@ -20,3 +24,4 @@
   command: openssl dhparam -out dhparam.pem 4096
   args:
     chdir: /etc/ssl/certs
+    creates: /etc/ssl/certs/dhparam.pem
