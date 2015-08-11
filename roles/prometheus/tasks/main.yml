@@ -1,0 +1,3 @@
+---
+- include: structure.yml
+- include: install.yml

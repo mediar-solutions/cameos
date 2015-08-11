@@ -1,0 +1,19 @@
+---
+- name: create prometheus group
+  group:
+    name: prometheus
+    state: present
+- name: create prometheus user
+  user:
+    name: prometheus
+    group: prometheus
+- name: create prometheus directory
+  file:
+    state: directory
+    path: "{{ item }}"
+    owner: prometheus
+    group: prometheus
+  with_items:
+    - /opt/prometheus
+    - /var/log/prometheus
+    - /var/lib/prometheus

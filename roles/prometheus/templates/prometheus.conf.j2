@@ -1,0 +1,6 @@
+[program:prometheus]
+command=/opt/prometheus/prometheus -config.file=/etc/prometheus.yml -storage.local.path /var/lib/prometheus
+user=prometheus
+stdout_logfile=/var/log/prometheus/prometheus-out.log
+stderr_logfile=/var/log/prometheus/prometheus-err.log
+autostart=true

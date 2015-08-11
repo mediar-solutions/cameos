@@ -1,0 +1,42 @@
+---
+- name: download prometheus
+  become: yes
+  become_user: prometheus
+  get_url:
+    url: "https://github.com/prometheus/prometheus/releases/download/{{ prometheus_version }}/prometheus-{{ prometheus_version }}.linux-amd64.tar.gz"
+    dest: "/tmp/prometheus-{{ prometheus_version }}.linux-amd64.tar.gz"
+    mode: 0644
+- name: unpack prometheus
+  become: yes
+  become_user: prometheus
+  unarchive:
+    src: "/tmp/prometheus-{{ prometheus_version }}.linux-amd64.tar.gz"
+    dest: /opt/prometheus
+    copy: no
+- name: check if config file already exists
+  stat:
+    path: /etc/prometheus.yml
+  register: prometheus_config_file
+- name: install prometheus config file
+  template:
+    src: prometheus.yml.j2
+    dest: /etc/prometheus.yml
+    owner: prometheus
+    group: prometheus
+    mode: 0755
+  when: not prometheus_config_file.stat.exists
+  notify:
+    - restart prometheus
+- name: add prometheus to path through profile.d
+  template:
+    src: prometheus.sh.j2
+    dest: /etc/profile.d/prometheus.sh
+    mode: 0755
+- name: install prometheus supervisor config file
+  template:
+    src: prometheus.conf.j2
+    dest: /etc/supervisord.d/prometheus.conf
+- name: add prometheus to supervisor
+  supervisorctl:
+    name: prometheus
+    state: present
