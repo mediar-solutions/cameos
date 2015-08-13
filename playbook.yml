@@ -34,5 +34,5 @@
     # - { role: python, tags: ['python'] }
     - { role: miniconda, tags: ['miniconda'] }
     - { role: nginx, tags: ['nginx'] }
-    - { role: postgresql, tags: ['postresql'] }
+    - { role: postgresql, tags: ['postgresql'] }
     - { role: memcached, tags: ['memcached'] }
