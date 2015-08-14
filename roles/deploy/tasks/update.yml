@@ -1,0 +1,21 @@
+---
+- name: get current timestamp
+  shell: date +"%Y%m%d%H%M"
+  register: current_timestamp
+- name: update the code
+  become: yes
+  become_user: "{{ deploy_user }}"
+  git:
+    repo: "{{ deploy_giturl }}"
+    dest: "~/{{ deploy_application }}/releases/{{ current_timestamp.stdout }}"
+    key_file: ~/.ssh/id_rsa
+    accept_hostkey: yes
+    depth: 1
+- name: symlink as current release
+  become: yes
+  become_user: "{{ deploy_user }}"
+  file:
+    state: link
+    src: "/home/{{ deploy_user }}/{{ deploy_application }}/releases/{{ current_timestamp.stdout }}"
+    path: "/home/{{ deploy_user }}/{{ deploy_application }}/current"
+  notify: restart application

@@ -1,0 +1,13 @@
+---
+- name: get current code version
+  become: yes
+  become_user: "{{ deploy_user }}"
+  command: git rev-parse HEAD
+  args:
+    chdir: ~/{{ deploy_application }}/current
+  register: current_release
+- name: get latest code version
+  become: yes
+  become_user: "{{ deploy_user }}"
+  raw: "git ls-remote {{ deploy_giturl }} | awk '/master/ {print $1}'"
+  register: latest_release

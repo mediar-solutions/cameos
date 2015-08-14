@@ -1,0 +1,15 @@
+---
+- hosts: all
+  become: yes
+  become_user: root
+  vars:
+    deploy_user: vagrant
+    # setup: true
+  pre_tasks:
+    - name: update apt cache
+      apt:
+        update_cache: yes
+        cache_valid_time: 3600
+  roles:
+    - base
+    - deploy

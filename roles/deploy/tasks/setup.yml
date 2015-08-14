@@ -1,0 +1,20 @@
+---
+- name: create directories
+  file:
+    state: directory
+    path: "{{ item }}"
+    owner: "{{ deploy_user }}"
+    group: "{{ deploy_user }}"
+  with_items:
+    - "/home/{{ deploy_user }}/{{ deploy_application }}"
+    - "/home/{{ deploy_user }}/{{ deploy_application }}/releases"
+- name: create log directory
+  file:
+    state: directory
+    path: "/var/log/{{ deploy_application }}"
+    owner: "{{ deploy_user }}"
+    group: "{{ deploy_user }}"
+- name: install supervisor configuration
+  template:
+    src: app_supervisor.conf.j2
+    dest: "/etc/supervisord.d/{{ deploy_application }}.conf"
