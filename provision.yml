@@ -1,0 +1,71 @@
+---
+- hosts: all
+  become: yes
+  become_user: root
+  vars:
+    rubies:
+      - 2.2.2
+    global_ruby: 2.2.2
+    deploy_setup: true
+    deploy_user: vagrant
+    deploy_application: redmine
+    deploy_giturl: https://github.com/redmine/redmine
+    deploy_gitversion: master
+    deploy_programs:
+      server: "/home/{{ deploy_user }}/.rbenv/shims/bundle exec rails s"
+    deploy_envvars:
+      RAILS_ENV: production
+      PATH: "/home/{{ deploy_user }}/.rbenv/shims:%(ENV_PATH)s"
+  pre_tasks:
+    - name: update apt cache
+      apt:
+        update_cache: yes
+        cache_valid_time: 3600
+  roles:
+    - base
+    - ruby
+    - postgresql
+    - nginx
+    - supervisor
+    - deploy
+  post_tasks:
+    - name: copy the nginx vhost
+      template:
+        src: examples/templates/redmine.vhost.j2
+        dest: /etc/nginx/sites-available/redmine
+    - name: copy the database configuration
+      template:
+        src: examples/templates/database.yml.j2
+        dest: "/home/{{ deploy_user }}/{{ deploy_application }}/current/config/database.yml"
+    - name: symlink redmine nginx vhost
+      file:
+        state: link
+        src: /etc/nginx/sites-available/redmine
+        path: /etc/nginx/sites-enabled/redmine
+      notify: restart nginx
+    - name: run bundle install
+      become: yes
+      become_user: "{{ deploy_user }}"
+      command: ~/.rbenv/shims/bundle install
+      args:
+        chdir: "/home/{{ deploy_user }}/{{ deploy_application }}/current"
+    - name: configure the database
+      become: yes
+      become_user: "{{ deploy_user }}"
+      command: ~/.rbenv/shims/bundle exec rake db:create db:migrate
+      args:
+        chdir: "/home/{{ deploy_user }}/{{ deploy_application }}/current"
+      environment:
+        RAILS_ENV: production
+    - name: configure secrets
+      become: yes
+      become_user: "{{ deploy_user }}"
+      command: ~/.rbenv/shims/bundle exec rake generate_secret_token
+      args:
+        chdir: "/home/{{ deploy_user }}/{{ deploy_application }}/current"
+      environment:
+        RAILS_ENV: production
+    - name: add application to supervisorctl
+      supervisorctl:
+        name: "{{ deploy_application }}:"
+        state: present

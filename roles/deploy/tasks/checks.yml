@@ -9,5 +9,5 @@
 - name: get latest code version
   become: yes
   become_user: "{{ deploy_user }}"
-  raw: "git ls-remote {{ deploy_giturl }} | awk '/master/ {print $1}'"
+  raw: "git ls-remote {{ deploy_giturl }} | awk '/{{ deploy_gitversion }}/ {print $1}'"
   register: latest_release

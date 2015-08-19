@@ -18,3 +18,4 @@
   template:
     src: app_supervisor.conf.j2
     dest: "/etc/supervisord.d/{{ deploy_application }}.conf"
+  when: deploy_programs is defined

@@ -11,6 +11,7 @@
     key_file: ~/.ssh/id_rsa
     accept_hostkey: yes
     depth: 1
+    version: "{{ deploy_gitversion }}"
 - name: symlink as current release
   become: yes
   become_user: "{{ deploy_user }}"
@@ -18,4 +19,3 @@
     state: link
     src: "/home/{{ deploy_user }}/{{ deploy_application }}/releases/{{ current_timestamp.stdout }}"
     path: "/home/{{ deploy_user }}/{{ deploy_application }}/current"
-  notify: restart application

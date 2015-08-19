@@ -1,15 +1,15 @@
 {%- for program, command in deploy_programs.iteritems() %}
 [program:{{ program }}]
 command={{ command }}
-environment={% for key, value in deploy_envvars.iteritems() %}{{ key }}={{ value }},{% endfor %}
+environment={% for key, value in deploy_envvars.iteritems() %}{{ key }}={{ value }}{% if not loop.last %},{% endif %}{% endfor %}
 
 directory=/home/{{ deploy_user }}/{{ deploy_application }}/current
 user={{ deploy_user }}
-stdout_logfile=/var/log/{{ deploy_user }}/%(program_name)s-out.log
-stderr_logfile=/var/log/{{ deploy_user }}/%(program_name)s-err.log
+stdout_logfile=/var/log/{{ deploy_application }}/%(program_name)s-out.log
+stderr_logfile=/var/log/{{ deploy_application }}/%(program_name)s-err.log
 autostart=true
 {%- endfor %}
 
 
 [group:{{ deploy_application }}]
-programs={% for program in deploy_programs.keys() %}{{ program }},{% endfor %}
+programs={% for program in deploy_programs.keys() %}{{ program }}{% if not loop.last %},{% endif %}{% endfor %}

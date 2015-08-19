@@ -1,15 +1,23 @@
 ---
 - hosts: all
-  become: yes
-  become_user: root
   vars:
     deploy_user: vagrant
-    # setup: true
-  pre_tasks:
-    - name: update apt cache
-      apt:
-        update_cache: yes
-        cache_valid_time: 3600
+    deploy_setup: false
+    deploy_application: redmine
+    deploy_giturl: https://github.com/redmine/redmine
+    deploy_gitversion: master
   roles:
-    - base
     - deploy
+  post_tasks:
+    - name: migrate the database
+      become: yes
+      become_user: "{{ deploy_user }}"
+      command: ~/.rbenv/shims/bundle exec rake db:migrate
+      args:
+        chdir: "/home/{{ deploy_user }}/{{ deploy_application }}/current"
+      environment:
+        RAILS_ENV: production
+    - name: restart application
+      supervisorctl:
+        name: "{{ deploy_application }}:"
+        state: restarted

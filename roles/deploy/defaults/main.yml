@@ -1,7 +1,1 @@
-deploy_application: redmine
-deploy_giturl: https://github.com/redmine/redmine
-deploy_programs:
-  unicorn: "/home/{{ deploy_user }}/.rbenv/shims/bundle exec unicorn -p 3000 -c ./config/unicorn.rb"
-deploy_envvars:
-  RAILS_ENV: production
-  PATH: "/home/{{ deploy_user }}/.rbenv/shims:%(ENV_PATH)s"
+deploy_setup: false

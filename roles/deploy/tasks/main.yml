@@ -1,7 +1,7 @@
 ---
 - include: setup.yml
-  when: setup is defined
+  when: deploy_setup
 - include: checks.yml
-  when: setup is not defined
+  when: not deploy_setup
 - include: update.yml
-  when: setup is defined or latest_release.stdout.strip() != current_release.stdout.strip()
+  when: deploy_setup or latest_release.stdout.strip() != current_release.stdout.strip()
