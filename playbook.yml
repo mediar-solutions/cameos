@@ -5,8 +5,8 @@
   vars:
     deploy_user: vagrant
     rubies:
-      - 2.2.2
-    global_ruby: 2.2.2
+      - 2.2.3
+    global_ruby: 2.2.3
     pythons:
       - 3.4.3
     global_python: 3.4.3
@@ -21,7 +21,7 @@
         update_cache: yes
         cache_valid_time: 3600
   roles:
-    # - { role: naked }
+    # - { role: naked, tags: ['naked'] }
     # - { role: fast_apt }
     - { role: base, tags: ['base'] }
     - { role: java, tags: ['java'] }
