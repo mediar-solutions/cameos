@@ -27,3 +27,9 @@
   shell: ~/miniconda/bin/conda update conda --yes -q
   args:
     executable: /bin/bash
+- name: install pip
+  become: yes
+  become_user: "{{ deploy_user }}"
+  shell: ~/miniconda/bin/conda install pip --yes -q
+  args:
+    executable: /bin/bash
