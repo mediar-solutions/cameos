@@ -28,5 +28,9 @@
   command: cp /root/.ssh/authorized_keys /home/ubuntu/.ssh/authorized_keys
   args:
     creates: /home/ubuntu/.ssh/authorized_keys
+- name: ensure permissions on authorized_keys
+  file:
+    path: /home/ubuntu/.ssh/authorized_keys
     owner: ubuntu
     group: ubuntu
+    mode: 0700
