@@ -1,0 +1,4 @@
+---
+- include: structure.yml
+- include: required-packages.yml
+- include: install.yml
