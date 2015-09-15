@@ -36,3 +36,4 @@
     - { role: nginx, tags: ['nginx'] }
     - { role: postgresql, tags: ['postgresql'] }
     - { role: memcached, tags: ['memcached'] }
+    - { role: redis, tags: ['redis'] }

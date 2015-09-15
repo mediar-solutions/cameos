@@ -1,0 +1,6 @@
+[program:redis]
+command=/opt/redis/bin/redis-server /etc/redis/redis.conf
+user=redis
+stdout_logfile=/var/log/redis/redis-out.log
+stderr_logfile=/var/log/redis/redis-err.log
+autostart=true

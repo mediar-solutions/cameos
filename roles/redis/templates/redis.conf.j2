@@ -1,0 +1,7 @@
+daemonize no
+dir /var/lib/redis
+bind {{ redis_bind }}
+logfile ""
+{% for save in redis_save -%}
+save {{ save }}
+{% endfor -%}
