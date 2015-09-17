@@ -25,3 +25,4 @@
   args:
     chdir: /etc/ssl/certs
     creates: /etc/ssl/certs/dhparam.pem
+  when: not skip_dhparams
