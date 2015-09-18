@@ -1,15 +1,4 @@
 ---
-- name: download solr
-  get_url:
-    url: "http://www.us.apache.org/dist/lucene/solr/{{ solr_version }}/solr-{{ solr_version }}.tgz"
-    dest: "~/solr-{{ solr_version }}.tgz"
-    mode: 0644
-- name: extract installer
-  command: "tar xzf solr-{{ solr_version }}.tgz solr-{{ solr_version }}/bin/install_solr_service.sh --strip-components=2"
-  args:
-    chdir: /root
-- name: install solr
-  command: "bash ./install_solr_service.sh solr-{{ solr_version }}.tgz"
-  args:
-    chdir: /root
-    creates: /opt/solr/bin/solr
+- include: install.yml
+- include: collection.yml
+  when: solr_create_collections

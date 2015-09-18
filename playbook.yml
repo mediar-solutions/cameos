@@ -15,6 +15,10 @@
     consul_is_server: true
     consul_bootstrap_expect: 1
     running_on_ec2: false
+    solr_create_collections: true
+    solr_collections:
+      - test1
+      - test2
   pre_tasks:
     - name: update apt cache
       apt:
