@@ -6,3 +6,5 @@
   args:
     creates: "/var/solr/data/{{ item }}"
   with_items: solr_collections
+  notify:
+    - restart solr
