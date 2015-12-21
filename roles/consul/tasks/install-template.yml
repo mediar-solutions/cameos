@@ -12,11 +12,3 @@
     src: "/tmp/{{ consul_template_archive }}"
     dest: "{{ consul_home }}/bin"
     copy: no
-- name: put the binary on the right place
-  become: yes
-  become_user: consul
-  command: "mv {{ consul_home }}/bin/consul-template_{{ consul_template_version }}_linux_amd64/consul-template {{ consul_home }}/bin/"
-- name: remove the directory
-  file:
-    path: "{{ consul_home }}/bin/consul-template_{{ consul_template_version }}_linux_amd64"
-    state: absent
