@@ -1,3 +1,4 @@
+https://releases.hashicorp.com/consul/0.6.0/consul_0.6.0_linux_amd64.zip
 ---
 consul_is_ui: false
 consul_is_server: false
@@ -5,9 +6,9 @@ consul_uses_atlas: false
 consul_bootstrap_expect: 3
 consul_version: 0.6.0
 consul_archive: "consul_{{ consul_version }}_linux_amd64.zip"
-consul_download: "https://releases.hashicorp.com/consul/{{ consul_archive }}"
+consul_download: "https://releases.hashicorp.com/consul/{{ consul_version }}/{{ consul_archive }}"
 consul_ui_archive: "consul_{{ consul_version }}_web_ui.zip"
-consul_ui_download: "https://releases.hashicorp.com/consul/{{ consul_archive }}"
+consul_ui_download: "https://releases.hashicorp.com/consul/{{ consul_version }}/{{ consul_archive }}"
 consul_home: /opt/consul
 consul_config_dir: /etc/consul.d
 consul_config_file: /etc/consul.json
