@@ -5,3 +5,5 @@ redis_save:
   - 900 1
   - 300 10
   - 60 10000
+redis_maxmemory: 0
+redis_maxmemory-policy: noeviction
