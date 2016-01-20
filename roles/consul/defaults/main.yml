@@ -3,7 +3,7 @@ consul_is_ui: false
 consul_is_server: false
 consul_uses_atlas: false
 consul_bootstrap_expect: 3
-consul_version: 0.6.0
+consul_version: 0.6.3
 consul_archive: "consul_{{ consul_version }}_linux_amd64.zip"
 consul_download: "https://releases.hashicorp.com/consul/{{ consul_version }}/{{ consul_archive }}"
 consul_ui_archive: "consul_{{ consul_version }}_web_ui.zip"
@@ -15,6 +15,6 @@ consul_log_dir: /var/log/consul
 consul_data_dir: "{{ consul_home }}/data"
 consul_supervisor_priority: 10
 running_on_ec2: false
-consul_template_version: 0.12.0
+consul_template_version: 0.12.2
 consul_template_archive: "consul-template_{{ consul_template_version }}_linux_amd64.zip"
 consul_template_download: "https://releases.hashicorp.com/consul-template/{{ consul_template_version }}/{{ consul_template_archive }}"
