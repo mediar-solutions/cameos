@@ -1,0 +1,23 @@
+---
+- name: check consul version
+  command: "{{ consul_home }}/bin/consul version"
+  register: consul_installed_version
+  ignore_errors: True
+- name: download consul
+  become: yes
+  become_user: consul
+  get_url:
+    url: "{{ consul_download }}"
+    dest: "/tmp/{{ consul_archive }}"
+    mode: 0644
+  when: consul_installed_version|failed or consul_installed_version.stdout.find(consul_version) == -1
+- name: unpack consul
+  become: yes
+  become_user: consul
+  unarchive:
+    src: "/tmp/{{ consul_archive }}"
+    dest: "{{ consul_home }}/bin"
+    copy: no
+  when: consul_installed_version|failed or consul_installed_version.stdout.find(consul_version) == -1
+  notify:
+    - restart consul

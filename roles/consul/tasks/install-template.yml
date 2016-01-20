@@ -1,3 +1,8 @@
+---
+- name: check consul-template version
+  command: "{{ consul_home }}/bin/consul-template --version"
+  register: consul_template_installed_version
+  ignore_errors: True
 - name: download consul template
   become: yes
   become_user: consul
@@ -5,6 +10,7 @@
     url: "{{ consul_template_download }}"
     dest: "/tmp/{{ consul_template_archive }}"
     mode: 0644
+  when: consul_template_installed_version|failed or consul_template_installed_version.stderr.find(consul_template_version) == -1
 - name: unpack consul template
   become: yes
   become_user: consul
@@ -12,3 +18,4 @@
     src: "/tmp/{{ consul_template_archive }}"
     dest: "{{ consul_home }}/bin"
     copy: no
+  when: consul_template_installed_version|failed or consul_template_installed_version.stderr.find(consul_template_version) == -1

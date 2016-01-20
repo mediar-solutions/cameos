@@ -1,27 +1,9 @@
 ---
-- name: download consul
-  become: yes
-  become_user: consul
-  get_url:
-    url: "{{ consul_download }}"
-    dest: "/tmp/{{ consul_archive }}"
-    mode: 0644
-- name: unpack consul
-  become: yes
-  become_user: consul
-  unarchive:
-    src: "/tmp/{{ consul_archive }}"
-    dest: "{{ consul_home }}/bin"
-    copy: no
 - name: add consul to path through profile.d
   template:
     src: consul.sh.j2
     dest: /etc/profile.d/consul.sh
     mode: 0755
-- name: check if config file already exists
-  stat:
-    path: "{{ consul_config_file }}"
-  register: config_file
 - name: install consul config file
   template:
     src: consul.json.j2
@@ -29,7 +11,6 @@
     owner: consul
     group: consul
     mode: 0755
-  when: not config_file.stat.exists
   notify:
     - restart consul
 - name: install consul supervisor config file
