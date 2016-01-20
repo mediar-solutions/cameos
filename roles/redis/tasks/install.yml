@@ -35,7 +35,6 @@
     dest: /etc/redis/redis.conf
     owner: redis
   notify: restart redis
-- meta: flush_handlers
 - name: install redis supervisor config file
   template:
     src: redis.supervisor.conf.j2
@@ -44,3 +43,4 @@
   supervisorctl:
     name: redis
     state: present
+- meta: flush_handlers
