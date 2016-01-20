@@ -14,6 +14,8 @@ The IDXP Analytics collection of Ansible roles.
 * nginx
 * postgresql
 * memcached
+* redis
+* rabbitmq
 
 ## Usage
 
