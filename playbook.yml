@@ -41,3 +41,4 @@
     - { role: postgresql, tags: ['postgresql'] }
     - { role: memcached, tags: ['memcached'] }
     - { role: redis, tags: ['redis'] }
+    - { role: rabbitmq, tags: ['rabbitmq'] }
