@@ -1,0 +1,7 @@
+[program:consul]
+command={{ consul_home }}/bin/consul agent -config-dir {{ consul_config_dir }} -config-file={{ consul_config_file }} -bind 127.0.0.1
+user=consul
+priority={{ consul_supervisor_priority }}
+stdout_logfile={{ consul_log_dir }}/consul-out.log
+stderr_logfile={{ consul_log_dir }}/consul-err.log
+autostart=true

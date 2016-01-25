@@ -1,14 +1,14 @@
 ---
 - name: install ruby
   shell: bash -lc "rbenv install -s {{ item }}"
-  with_items: rubies
+  with_items: "{{ rubies }}"
 - name: skip ri and rdoc
   copy:
     src: .gemrc
     dest: ~/.gemrc
 - name: install bundler
   shell: bash -lc "rbenv shell {{ item }} && gem install bundler"
-  with_items: rubies
+  with_items: "{{ rubies }}"
 - name: set global ruby version
   shell: bash -lc "rbenv global {{ global_ruby }}"
   when: global_ruby is defined

@@ -5,6 +5,6 @@
   command: "/opt/solr/bin/solr create -c {{ item }} -n data_driven_schema_configs"
   args:
     creates: "/var/solr/data/{{ item }}"
-  with_items: solr_collections
+  with_items: "{{ solr_collections }}"
   notify:
     - restart solr

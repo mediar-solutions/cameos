@@ -5,11 +5,11 @@
   vars:
     deploy_user: vagrant
     rubies:
-      - 2.2.3
-    global_ruby: 2.2.3
+      - 2.3.0
+    global_ruby: 2.3.0
     pythons:
-      - 3.4.3
-    global_python: 3.4.3
+      - 3.5.1
+    global_python: 3.5.1
     consul_aware: true
     consul_is_ui: true
     consul_is_server: true
@@ -26,19 +26,19 @@
         update_cache: yes
         cache_valid_time: 3600
   roles:
-    # - { role: naked, tags: ['naked'] }
-    # - { role: fast_apt }
+    # - { role: naked, tags: ['naked'] } # used by exposed hosts such as Digital Ocean
+    # - { role: fast_apt } # for local machines
     - { role: base, tags: ['base'] }
-    - { role: java, tags: ['java'] }
+    - { role: java, tags: ['java'] } # required by solr
     - { role: solr, tags: ['solr'] }
-    - { role: supervisor, tags: ['supervisor'] }
-    - { role: consul, tags: ['consul'] }
+    - { role: supervisor, tags: ['supervisor'] } # required by beanstalkd, consul, prometheus, redis and smokeping
+    - { role: nginx, tags: ['nginx'] } # required by consul and smokeping
+    - { role: consul, tags: ['consul'] } # required by beanstalkd, postgresql and redis
     - { role: prometheus, tags: ['prometheus'] }
     - { role: beanstalkd, tags: ['beanstalkd'] }
     - { role: ruby, tags: ['ruby'] }
-    # - { role: python, tags: ['python'] }
+    # - { role: python, tags: ['python'] } # conflicts with miniconda
     - { role: miniconda, tags: ['miniconda'] }
-    - { role: nginx, tags: ['nginx'] }
     - { role: postgresql, tags: ['postgresql'] }
     - { role: memcached, tags: ['memcached'] }
     - { role: redis, tags: ['redis'] }
