@@ -1,5 +1,5 @@
 ---
-redis_version: 3.0.4
+redis_version: 3.0.7
 redis_bind: 127.0.0.1
 redis_save:
   - 900 1
