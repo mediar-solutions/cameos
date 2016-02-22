@@ -2,3 +2,5 @@
 - include: structure.yml
 - include: required-packages.yml
 - include: install.yml
+- include: consul.yml
+  when: consul_aware

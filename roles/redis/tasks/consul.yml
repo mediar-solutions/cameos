@@ -1,0 +1,18 @@
+---
+- name: copy consul configuration files
+  become: yes
+  become_user: consul
+  template:
+    src: redis.consul.json.j2
+    dest: "{{ consul_config_dir }}/redis.json"
+  notify:
+    - restart consul
+- name: copy consul checks
+  become: yes
+  become_user: consul
+  copy:
+    src: "{{ item }}"
+    dest: "{{ consul_home }}/check_scripts/{{ item }}"
+    mode: 0755
+  with_items:
+    - redis-running.sh

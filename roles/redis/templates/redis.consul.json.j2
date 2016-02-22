@@ -1,0 +1,17 @@
+{
+  "service": {
+    "id": "redis",
+    "name": "redis",
+    "tags": ["redis"],
+    "port": 6379
+  },
+  "checks": [
+    {
+      "id": "redis-running",
+      "name": "Redis running",
+      "script": "{{ consul_home }}/check_scripts/redis-running.sh",
+      "interval": "10s",
+      "service_id": "redis"
+    }
+  ]
+}
