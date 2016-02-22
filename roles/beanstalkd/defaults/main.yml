@@ -1,4 +1,6 @@
 ---
 beanstalkd_supervisor_priority: 20
 beanstalkd_job_size: 2000000
+beanstalkd_service_id: beanstalkd
+beanstalkd_service_name: beanstalkd
 consul_aware: false

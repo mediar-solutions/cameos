@@ -1,7 +1,7 @@
 {
   "service": {
-    "id": "beanstalkd",
-    "name": "beanstalkd",
+    "id": "{{ beanstalkd_service_id }}",
+    "name": "{{ beanstalkd_service_name }}",
     "tags": ["beanstalkd"],
     "port": 11300
   },
@@ -11,14 +11,14 @@
       "name": "Beanstalkd running",
       "script": "{{ consul_home }}/check_scripts/beanstalkd-running.sh",
       "interval": "10s",
-      "service_id": "beanstalkd"
+      "service_id": "{{ beanstalkd_service_id }}"
     },
     {
       "id": "beanstalkd-queue",
       "name": "Beanstalkd queue with reasonable size",
       "script": "{{ consul_home }}/check_scripts/beanstalkd-queue.py",
       "interval": "20s",
-      "service_id": "beanstalkd"
+      "service_id": "{{ beanstalkd_service_id }}"
     }
   ]
 }
