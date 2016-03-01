@@ -19,27 +19,28 @@
     solr_collections:
       - test1
       - test2
+    skip_dhparams: true
   pre_tasks:
     - name: update apt cache
       apt:
         update_cache: yes
         cache_valid_time: 3600
   roles:
-    # # - { role: naked, tags: ['naked'] }
-    # # - { role: fast_apt }
-    # - { role: base, tags: ['base'] }
-    # - { role: java, tags: ['java'] }
-    # - { role: solr, tags: ['solr'] }
-    # - { role: supervisor, tags: ['supervisor'] }
-    # - { role: consul, tags: ['consul'] }
-    # - { role: prometheus, tags: ['prometheus'] }
-    # - { role: beanstalkd, tags: ['beanstalkd'] }
-    # - { role: ruby, tags: ['ruby'] }
-    # # - { role: python, tags: ['python'] }
-    # - { role: miniconda, tags: ['miniconda'] }
-    # - { role: nginx, tags: ['nginx'] }
-    # - { role: postgresql, tags: ['postgresql'] }
-    # - { role: memcached, tags: ['memcached'] }
-    # - { role: redis, tags: ['redis'] }
-    # - { role: rabbitmq, tags: ['rabbitmq'] }
+    # - { role: naked, tags: ['naked'] }
+    # - { role: fast_apt }
+    - { role: base, tags: ['base'] }
+    - { role: java, tags: ['java'] }
+    - { role: solr, tags: ['solr'] }
+    - { role: supervisor, tags: ['supervisor'] }
+    - { role: consul, tags: ['consul'] }
+    - { role: prometheus, tags: ['prometheus'] }
+    - { role: beanstalkd, tags: ['beanstalkd'] }
+    - { role: ruby, tags: ['ruby'] }
+    # - { role: python, tags: ['python'] }
+    - { role: miniconda, tags: ['miniconda'] }
+    - { role: nginx, tags: ['nginx'] }
+    - { role: postgresql, tags: ['postgresql'] }
+    - { role: memcached, tags: ['memcached'] }
+    - { role: redis, tags: ['redis'] }
+    - { role: rabbitmq, tags: ['rabbitmq'] }
     - { role: smokeping, tags: ['smokeping'] }

@@ -28,7 +28,7 @@
 - name: configure smokeping
   command: ./configure --prefix=/opt/smokeping
   environment:
-    PERL5LIB: "/opt/rrdtool/lib/perl/{{ perl_version }}"
+    PERL5LIB: "/opt/rrdtool/lib/perl/{{ perl_version.stdout }}"
   args:
     chdir: "/usr/local/src/smokeping-{{ smokeping_version }}"
     creates: "/usr/local/src/smokeping-{{ smokeping_version }}/config.log"

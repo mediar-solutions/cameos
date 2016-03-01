@@ -11,7 +11,7 @@
     owner: smokeping
     group: smokeping
 - name: synchronize htdocs contents to var www
-  shell: cp -R htdocs/* /var/www/smokeping/
+  shell: cp -R htdocs/cropper /var/www/smokeping/
   args:
     chdir: /opt/smokeping
     creates: /var/www/smokeping/cropper
