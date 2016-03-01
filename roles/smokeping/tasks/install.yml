@@ -1,0 +1,48 @@
+---
+- name: install the necessary packages
+  apt:
+    name: "{{ item }}"
+    state: present
+  with_items:
+    - fping
+    - fcgiwrap
+- name: download smokeping
+  get_url:
+    url: "http://oss.oetiker.ch/smokeping/pub/smokeping-{{ smokeping_version }}.tar.gz"
+    dest: "/usr/local/src/smokeping-{{ smokeping_version }}.tar.gz"
+    mode: 0644
+- name: unpack smokeping
+  unarchive:
+    src: "/usr/local/src/smokeping-{{ smokeping_version }}.tar.gz"
+    dest: "/usr/local/src"
+    creates: "/usr/local/src/smokeping-{{ smokeping_version }}"
+    copy: no
+- name: build perl modules
+  command: ./setup/build-perl-modules.sh /opt/smokeping/thirdparty
+  args:
+    chdir: "/usr/local/src/smokeping-{{ smokeping_version }}"
+    creates: /opt/smokeping/thirdparty
+- name: get perl version
+  shell: /usr/bin/perl -e 'print $^V;' | cut -c 2-
+  register: perl_version
+- name: configure smokeping
+  command: ./configure --prefix=/opt/smokeping
+  environment:
+    PERL5LIB: "/opt/rrdtool/lib/perl/{{ perl_version.stdout }}"
+  args:
+    chdir: "/usr/local/src/smokeping-{{ smokeping_version }}"
+    creates: "/usr/local/src/smokeping-{{ smokeping_version }}/config.log"
+- name: compile smokeping
+  command: make
+  environment:
+    LC_ALL: C
+  args:
+    chdir: "/usr/local/src/smokeping-{{ smokeping_version }}"
+    creates: "/usr/local/src/smokeping-{{ smokeping_version }}/doc/smokeping.1"
+- name: install smokeping
+  command: make install
+  environment:
+    LC_ALL: C
+  args:
+    chdir: "/usr/local/src/smokeping-{{ smokeping_version }}"
+    creates: /opt/smokeping/bin/smokeping

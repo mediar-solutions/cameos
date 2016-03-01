@@ -1,0 +1,30 @@
+---
+- name: create smokeping group
+  group:
+    name: smokeping
+    state: present
+- name: create smokeping user
+  user:
+    name: smokeping
+    group: smokeping
+- name: create smokeping directory
+  file:
+    state: directory
+    path: "{{ item }}"
+    owner: smokeping
+    group: smokeping
+  with_items:
+    - /opt/smokeping
+    - /var/log/smokeping
+    - /var/lib/smokeping
+    - /var/www/smokeping
+- name: create config directory
+  file:
+    state: directory
+    path: /etc/smokeping
+- name: create cache directory
+  file:
+    state: directory
+    path: /var/www/smokeping/cache
+    owner: www-data
+    group: www-data

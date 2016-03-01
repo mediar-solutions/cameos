@@ -1,0 +1,39 @@
+---
+- name: install the necessary packages
+  apt:
+    name: "{{ item }}"
+    state: present
+  with_items:
+    - build-essential
+    - libpango1.0-dev
+    - libxml2-dev
+- name: create the directory
+  file:
+    state: directory
+    path: /opt/rrdtool
+- name: download rrdtool
+  get_url:
+    url: "http://oss.oetiker.ch/rrdtool/pub/rrdtool-{{ rrdtool_version }}.tar.gz"
+    dest: "/usr/local/src/rrdtool-{{ rrdtool_version }}.tar.gz"
+    mode: 0644
+- name: unpack rrdtool
+  unarchive:
+    src: "/usr/local/src/rrdtool-{{ rrdtool_version }}.tar.gz"
+    dest: "/usr/local/src"
+    creates: "/usr/local/src/rrdtool-{{ rrdtool_version }}"
+    copy: no
+- name: configure rrdtool
+  command: ./configure --prefix=/opt/rrdtool
+  args:
+    chdir: "/usr/local/src/rrdtool-{{ rrdtool_version }}"
+    creates: "/usr/local/src/rrdtool-{{ rrdtool_version }}/config.log"
+- name: compile rrdtool
+  command: make
+  args:
+    chdir: "/usr/local/src/rrdtool-{{ rrdtool_version }}"
+    creates: "/usr/local/src/rrdtool-{{ rrdtool_version }}/src/rrd_tool.o"
+- name: install rrdtool
+  command: make install
+  args:
+    chdir: "/usr/local/src/rrdtool-{{ rrdtool_version }}"
+    creates: /opt/rrdtool/bin/rrdtool

@@ -19,6 +19,7 @@
     solr_collections:
       - test1
       - test2
+    skip_dhparams: true
   pre_tasks:
     - name: update apt cache
       apt:
@@ -42,3 +43,4 @@
     - { role: memcached, tags: ['memcached'] }
     - { role: redis, tags: ['redis'] }
     - { role: rabbitmq, tags: ['rabbitmq'] }
+    - { role: smokeping, tags: ['smokeping'] }
