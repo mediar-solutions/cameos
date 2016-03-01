@@ -19,6 +19,7 @@
   copy:
     src: smokeping.fcgi
     dest: /var/www/smokeping/smokeping.fcgi
+    mode: 0755
 - name: copy the basepage.html file
   command: cp etc/basepage.html.dist /var/www/smokeping/basepage.html
   args:
