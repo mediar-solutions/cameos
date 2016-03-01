@@ -1,0 +1,6 @@
+[program:smokeping]
+command=/opt/smokeping/bin/smokeping --config=/etc/smokeping/config --nodaemon
+user=smokeping
+stdout_logfile=/var/log/smokeping/smokeping-out.log
+stderr_logfile=/var/log/smokeping/smokeping-err.log
+autostart=true

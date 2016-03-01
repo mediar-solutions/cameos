@@ -39,3 +39,12 @@
     path: /etc/nginx/sites-enabled/smokeping
   notify:
     - restart nginx
+- name: install smokeping supervisor config file
+  template:
+    src: smokeping.supervisor.conf.j2
+    dest: /etc/supervisord.d/smokeping.conf
+- name: add smokeping to supervisor
+  supervisorctl:
+    name: smokeping
+    state: present
+- meta: flush_handlers
