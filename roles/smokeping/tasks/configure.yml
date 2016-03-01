@@ -1,0 +1,31 @@
+---
+- name: move secrets to the right place
+  command: mv etc/smokeping_secrets.dist /etc/smokeping/smokeping_secrets
+  args:
+    chdir: /opt/smokeping
+    creates: /etc/smokeping/smokeping_secrets
+- name: define secure mode to secrets
+  file:
+    path: /etc/smokeping/smokeping_secrets
+    mode: 0600
+    owner: smokeping
+    group: smokeping
+- name: synchronize htdocs contents to var www
+  shell: cp -R htdocs/* /var/www/smokeping/
+  args:
+    chdir: /opt/smokeping
+    creates: /var/www/smokeping/cropper
+- name: rename the fcgi script
+  command: mv smokeping.fcgi.dist smokeping.fcgi
+  args:
+    chdir: /var/www/smokeping
+    creates: /var/www/smokeping/smokeping.fcgi
+- name: copy the basepage.html file
+  command: cp etc/basepage.html.dist /var/www/smokeping/basepage.html
+  args:
+    chdir: /opt/smokeping
+    creates: /var/www/smokeping/basepage.html
+- name: copy the config file
+  template:
+    src: config.j2
+    dest: /etc/smokeping/config

@@ -2,3 +2,4 @@
 - include: rrdtool.yml
 - include: structure.yml
 - include: install.yml
+- include: configure.yml

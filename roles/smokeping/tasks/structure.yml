@@ -17,5 +17,14 @@
     - /opt/smokeping
     - /var/log/smokeping
     - /var/lib/smokeping
-    - /etc/smokeping
     - /var/www/smokeping
+- name: create config directory
+  file:
+    state: directory
+    path: /etc/smokeping
+- name: create cache directory
+  file:
+    state: directory
+    path: /var/www/smokeping/cache
+    owner: www-data
+    group: www-data
