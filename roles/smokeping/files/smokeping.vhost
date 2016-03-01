@@ -1,0 +1,16 @@
+server {
+  listen 80 default_server;
+  root /var/www/smokeping;
+
+  location / {
+    index smokeping.fcgi;
+  }
+
+  location ~ \.pl|cgi|fcgi$ {
+    try_files $uri =404;
+    gzip off;
+    fastcgi_pass unix:/var/run/fcgiwrap.socket;
+    fastcgi_param SCRIPT_FILENAME $document_root$fastcgi_script_name;
+    include /etc/nginx/fastcgi_params;
+  }
+}

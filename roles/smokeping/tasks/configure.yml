@@ -1,6 +1,6 @@
 ---
 - name: move secrets to the right place
-  command: mv etc/smokeping_secrets.dist /etc/smokeping/smokeping_secrets
+  command: cp etc/smokeping_secrets.dist /etc/smokeping/smokeping_secrets
   args:
     chdir: /opt/smokeping
     creates: /etc/smokeping/smokeping_secrets
@@ -15,11 +15,10 @@
   args:
     chdir: /opt/smokeping
     creates: /var/www/smokeping/cropper
-- name: rename the fcgi script
-  command: mv smokeping.fcgi.dist smokeping.fcgi
-  args:
-    chdir: /var/www/smokeping
-    creates: /var/www/smokeping/smokeping.fcgi
+- name: copy the fcgi script
+  copy:
+    src: smokeping.fcgi
+    dest: /var/www/smokeping/smokeping.fcgi
 - name: copy the basepage.html file
   command: cp etc/basepage.html.dist /var/www/smokeping/basepage.html
   args:
@@ -29,3 +28,14 @@
   template:
     src: config.j2
     dest: /etc/smokeping/config
+- name: copy the nginx vhost
+  copy:
+    src: smokeping.vhost
+    dest: /etc/nginx/sites-available/smokeping
+- name: symlink smokeping nginx vhost
+  file:
+    state: link
+    src: /etc/nginx/sites-available/smokeping
+    path: /etc/nginx/sites-enabled/smokeping
+  notify:
+    - restart nginx
