@@ -25,12 +25,12 @@ from = smokealert@company.xy
 type = loss
 # in percent
 pattern = >0%,*12*,>0%,*12*,>0%
-comment = loss 3 times  in a row
+comment = loss 3 times in a row
 
 *** Database ***
 
-step     = 300
-pings    = 20
+step = 60
+pings = 20
 
 # consfn mrhb steps total
 
@@ -123,22 +123,22 @@ title = Network Latency Grapher
 remark = Welcome to the SmokePing website of xxx Company. \
          Here you will learn all about the latency of our network.
 
-+ Test
-menu= Targets
++ DNSServers
+menu = DNS Servers
 #parents = owner:/Test/James location:/
 
-++ GoogleDNS
+++ Google
 
-menu = Google DNS
-title =Google DNS
+menu = Google
+title = Google
 #alerts = someloss
 #slaves = boomer slave2
 host = 8.8.8.8
 
-++ Level3DNS
+++ Level3
 
-menu = Level 3 DNS
-title = Level 3 DNS
+menu = Level 3
+title = Level 3
 #alerts = someloss
 #slaves = boomer slave2
 host = 4.2.2.2
