@@ -14,7 +14,7 @@
     dest: ~/.rbenv.sh
 - name: enable bash loading
   lineinfile:
-    dest: ~/.profile
+    dest: ~/.bashrc
     line: "source ~/.rbenv.sh"
     regexp: "source ~/.rbenv.sh"
     insertafter: EOF

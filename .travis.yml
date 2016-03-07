@@ -1,3 +1,6 @@
+sudo: required
+dist: trusty
+language: generic
 notifications:
   email: false
   hipchat:
@@ -6,22 +9,22 @@ notifications:
     template:
       - '%{repository}#%{build_number} (%{branch} - %{commit} : %{author}): %{message}'
     notify: true
-before_install:
-  - sudo service postgresql stop
-  - sudo rm -rf /var/lib/postgresql
-  - sudo apt-get remove --purge postgresql postgresql-9.1 postgresql-9.2 postgresql-9.3 postgresql-9.4 postgresql-common
-  - sudo apt-get autoremove
 install:
+  - sudo add-apt-repository ppa:fkrull/deadsnakes-python2.7 -y
+  - sudo apt-get update
+  - sudo apt-get install ca-certificates
+  - sudo apt-get install python2.7
   - sudo apt-get install python-pip git
+  - sudo apt-get install nagios-plugins-common nagios-plugins-basic # google servers kept 404ing when mid playbook, so we put it before
+  - sudo pip install -U pip
   - sudo pip install paramiko PyYAML Jinja2 httplib2
-  - git clone --branch v1.9.2-0.1.rc1 --depth 1 --recursive https://github.com/ansible/ansible.git ~/ansible
+  - git clone --branch v2.0.1.0-1 --depth 1 --recursive https://github.com/ansible/ansible.git ~/ansible
   - cd ~/ansible; sudo python setup.py install; cd -
 before_script:
   - sed -i 's/all/127.0.0.1/' playbook.yml
   - sed -i 's/vagrant/travis/' playbook.yml
-  - sed -i 's/trusty/precise/' roles/postgresql/tasks/install.yml
-  - cp .travis.supervisor.init roles/supervisor/files/supervisor
   - cp .travis.dnsmasq.yml roles/consul/tasks/dnsmasq.yml
-  - echo 'hello world' | sudo tee /etc/ssl/certs/dhparam.pem
+  - cp .travis.consul.conf.j2 roles/consul/templates/consul.conf.j2
 script:
-  - PYTHONUNBUFFERED=1 ANSIBLE_FORCE_COLOR=true travis_wait ansible-playbook playbook.yml --connection=local -i 'localhost,'
+  - python --version
+  - PYTHONUNBUFFERED=1 ANSIBLE_FORCE_COLOR=true ansible-playbook playbook.yml --connection=local -i 'localhost,'
