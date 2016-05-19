@@ -5,8 +5,8 @@
   vars:
     deploy_user: vagrant
     rubies:
-      - 2.3.0
-    global_ruby: 2.3.0
+      - 2.3.1
+    global_ruby: 2.3.1
     pythons:
       - 3.5.1
     global_python: 3.5.1
