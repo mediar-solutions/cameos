@@ -1,8 +1,8 @@
 # Cameos
 
-[![Build Status](https://travis-ci.org/idxp/cameos.svg?branch=master)](https://travis-ci.org/idxp/cameos)
+[![Build Status](https://travis-ci.org/arturhoo/cameos.svg?branch=master)](https://travis-ci.org/arturhoo/cameos)
 
-The IDXP Analytics collection of Ansible roles.
+My collection of Ansible roles forked from my work while at IDXP.
 
 * java 7
 * solr 5

@@ -18,7 +18,7 @@ install:
   - sudo apt-get install nagios-plugins-common nagios-plugins-basic # google servers kept 404ing when mid playbook, so we put it before
   - sudo pip install -U pip
   - sudo pip install paramiko PyYAML Jinja2 httplib2
-  - git clone --branch v2.0.1.0-1 --depth 1 --recursive https://github.com/ansible/ansible.git ~/ansible
+  - git clone --branch v2.0.2.0-1 --depth 1 --recursive https://github.com/ansible/ansible.git ~/ansible
   - cd ~/ansible; sudo python setup.py install; cd -
 before_script:
   - sed -i 's/all/127.0.0.1/' playbook.yml
